@@ -20,8 +20,8 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
-
 import play.mvc.Security;
+import sun.misc.BASE64Encoder;
 import utilities.Point;
 import utilities.geo.Convertor;
 
@@ -196,7 +196,9 @@ public class AdminCommunication extends Controller {
 					crime.put("id", c.getId());
 					crime.put("text", c.getFlag());
 					crime.put("description", c.getDescription());
-					crime.put("photo", c.getPhoto());
+					BASE64Encoder encoder = new BASE64Encoder();
+					String image = encoder.encode(c.getPhoto());
+					crime.put("photo", image);
 				}
 			}
 			// result.p
@@ -247,7 +249,9 @@ public class AdminCommunication extends Controller {
 				crime.put("id", c.getId());
 				crime.put("text", c.getFlag());
 				crime.put("description", c.getDescription());
-				crime.put("photo", c.getPhoto());
+				BASE64Encoder encoder = new BASE64Encoder();
+				String image = encoder.encode(c.getPhoto());
+				crime.put("photo", image);
 			}
 
 			return ok(result);

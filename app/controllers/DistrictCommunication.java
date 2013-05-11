@@ -6,17 +6,12 @@ import javax.persistence.Query;
 
 import model.District;
 import model.Info;
-import model.operations.DistrictOperations;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 
-import controllers.security.Secured;
-
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
-import play.libs.F.Callback;
-import play.libs.F.Callback0;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
@@ -24,6 +19,7 @@ import play.mvc.Result;
 import play.mvc.Security;
 import play.mvc.WebSocket;
 import websocket.WebSocketPool;
+import controllers.security.Secured;
 
 @Security.Authenticated(Secured.class)
 // FIXME add this back after the jBcrypt problem solving

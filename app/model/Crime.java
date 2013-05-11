@@ -25,13 +25,16 @@ public class Crime {
 	
 	private String flag;
 	
-	private boolean actual;
+	private Boolean actual;
 	
 	@ManyToOne
 	private District district;
 	
 	@Type(type = "org.hibernatespatial.GeometryUserType")
 	private Point point;
+	
+	@ManyToOne
+	private Client client;
 
 	public Long getId() {
 		return id;
@@ -82,11 +85,19 @@ public class Crime {
 		this.flag = flag;
 	}
 
-	public boolean isActual() {
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Boolean getActual() {
 		return actual;
 	}
 
-	public void setActual(boolean actual) {
+	public void setActual(Boolean actual) {
 		this.actual = actual;
 	}
 	

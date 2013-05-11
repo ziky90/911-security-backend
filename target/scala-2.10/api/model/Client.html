@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Crime - model.Crime</title>
-          <meta name="description" content="Crime - model.Crime" />
-          <meta name="keywords" content="Crime model.Crime" />
+          <title>Client - model.Client</title>
+          <meta name="description" content="Client - model.Client" />
+          <meta name="keywords" content="Client model.Client" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -17,7 +17,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../index.html';
-            var hash = 'model.Crime';
+            var hash = 'model.Client';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -31,7 +31,7 @@
       <div id="definition">
         <img src="../lib/class_big.png" />
         <p id="owner"><a href="package.html" class="extype" name="model">model</a></p>
-        <h1>Crime</h1>
+        <h1>Client</h1>
       </div>
 
       <h4 id="signature" class="signature">
@@ -40,7 +40,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">Crime</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">Client</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
       
@@ -64,7 +64,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="model.Crime"><span>Crime</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="model.Client"><span>Client</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -84,16 +84,16 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="model.Crime#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;():model.Crime"></a>
-      <a id="&lt;init&gt;:Crime"></a>
+              <ol><li name="model.Client#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():model.Client"></a>
+      <a id="&lt;init&gt;:Client"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Crime</span><span class="params">()</span>
+        <span class="name">Client</span><span class="params">()</span>
       </span>
       </h4>
       
@@ -242,16 +242,16 @@
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="model.Crime#getActual" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getActual():Boolean"></a>
-      <a id="getActual():Boolean"></a>
+    </li><li name="model.Client#getAllowed" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getAllowed():Boolean"></a>
+      <a id="getAllowed():Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getActual</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Boolean">Boolean</span></span>
+        <span class="name">getAllowed</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Boolean">Boolean</span></span>
       </span>
       </h4>
       
@@ -268,59 +268,20 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="model.Crime#getClient" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getClient():model.Client"></a>
-      <a id="getClient():Client"></a>
+    </li><li name="model.Client#getCrimes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getCrimes():java.util.List[model.Crime]"></a>
+      <a id="getCrimes():List[Crime]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getClient</span><span class="params">()</span><span class="result">: <a href="Client.html" class="extype" name="model.Client">Client</a></span>
+        <span class="name">getCrimes</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.List">List</span>[<a href="Crime.html" class="extype" name="model.Crime">Crime</a>]</span>
       </span>
       </h4>
       
-    </li><li name="model.Crime#getDescription" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getDescription():String"></a>
-      <a id="getDescription():String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">getDescription</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#getDistrict" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getDistrict():model.District"></a>
-      <a id="getDistrict():District"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">getDistrict</span><span class="params">()</span><span class="result">: <a href="District.html" class="extype" name="model.District">District</a></span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#getFlag" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getFlag():String"></a>
-      <a id="getFlag():String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">getFlag</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#getId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="model.Client#getId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="getId():Long"></a>
       <a id="getId():Long"></a>
       <h4 class="signature">
@@ -330,32 +291,6 @@
       </span>
       <span class="symbol">
         <span class="name">getId</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Long">Long</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#getPhoto" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getPhoto():Array[Byte]"></a>
-      <a id="getPhoto():Array[Byte]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">getPhoto</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#getPoint" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getPoint():com.vividsolutions.jts.geom.Point"></a>
-      <a id="getPoint():Point"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">getPoint</span><span class="params">()</span><span class="result">: <span class="extype" name="com.vividsolutions.jts.geom.Point">Point</span></span>
       </span>
       </h4>
       
@@ -424,72 +359,33 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="model.Crime#setActual" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="setActual(actual:Boolean):Unit"></a>
-      <a id="setActual(Boolean):Unit"></a>
+    </li><li name="model.Client#setAllowed" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="setAllowed(allowed:Boolean):Unit"></a>
+      <a id="setAllowed(Boolean):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">setActual</span><span class="params">(<span name="actual">actual: <span class="extype" name="java.lang.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">setAllowed</span><span class="params">(<span name="allowed">allowed: <span class="extype" name="java.lang.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
       
-    </li><li name="model.Crime#setClient" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="setClient(client:model.Client):Unit"></a>
-      <a id="setClient(Client):Unit"></a>
+    </li><li name="model.Client#setCrimes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="setCrimes(crimes:java.util.List[model.Crime]):Unit"></a>
+      <a id="setCrimes(List[Crime]):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">setClient</span><span class="params">(<span name="client">client: <a href="Client.html" class="extype" name="model.Client">Client</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">setCrimes</span><span class="params">(<span name="crimes">crimes: <span class="extype" name="java.util.List">List</span>[<a href="Crime.html" class="extype" name="model.Crime">Crime</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
       
-    </li><li name="model.Crime#setDescription" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="setDescription(description:String):Unit"></a>
-      <a id="setDescription(String):Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">setDescription</span><span class="params">(<span name="description">description: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#setDistrict" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="setDistrict(district:model.District):Unit"></a>
-      <a id="setDistrict(District):Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">setDistrict</span><span class="params">(<span name="district">district: <a href="District.html" class="extype" name="model.District">District</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#setFlag" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="setFlag(flag:String):Unit"></a>
-      <a id="setFlag(String):Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">setFlag</span><span class="params">(<span name="flag">flag: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#setId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="model.Client#setId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="setId(id:Long):Unit"></a>
       <a id="setId(Long):Unit"></a>
       <h4 class="signature">
@@ -499,32 +395,6 @@
       </span>
       <span class="symbol">
         <span class="name">setId</span><span class="params">(<span name="id">id: <span class="extype" name="java.lang.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#setPhoto" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="setPhoto(photo:Array[Byte]):Unit"></a>
-      <a id="setPhoto(Array[Byte]):Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">setPhoto</span><span class="params">(<span name="photo">photo: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="model.Crime#setPoint" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="setPoint(point:com.vividsolutions.jts.geom.Point):Unit"></a>
-      <a id="setPoint(Point):Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">setPoint</span><span class="params">(<span name="point">point: <span class="extype" name="com.vividsolutions.jts.geom.Point">Point</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
       
