@@ -148,7 +148,7 @@ public class DistrictCommunication extends Controller {
 		}
 	}
 
-	@Transactional(readOnly = true)
+	
 	public static WebSocket<JsonNode> initWebSocket(final long id) {
 
 		if (Secured.isOwnerOf(id)) {
