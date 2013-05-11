@@ -18,7 +18,7 @@ public class Crime {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Lob
+	@Type(type="org.hibernate.type.BinaryType")
 	private byte[] photo;
 	
 	private String description;
