@@ -2,6 +2,7 @@ package controllers;
 
 import model.operations.Admin;
 import model.operations.DistrictOperations;
+import model.operations.UserOperations;
 
 import org.codehaus.jackson.JsonNode;
 
@@ -37,6 +38,18 @@ public class Application extends Controller {
 		
 		if(Admin.authenticate(json.findPath("password").getTextValue())){
 			session("login", "admin");
+			return ok("logged in");
+		}
+		
+		return badRequest("wrong password");		
+	}
+	
+	@Transactional
+	@BodyParser.Of(BodyParser.Json.class)
+	public static Result authenticateUser(){
+		JsonNode json = request().body().asJson();
+		
+		if(UserOperations.authenticate(json.findPath("id").getTextValue())){
 			return ok("logged in");
 		}
 		

@@ -19,6 +19,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import sun.misc.BASE64Decoder;
 import utilities.geo.Convertor;
 
@@ -27,6 +28,9 @@ import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 
+import controllers.security.Secured;
+
+@Security.Authenticated(Secured.class)
 public class UsersReport extends Controller{
 
 	@Transactional

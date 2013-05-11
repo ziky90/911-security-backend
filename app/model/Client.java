@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class Client {
 
 	@Id
-	private Long id;
+	private String id;
 	
 	@NotNull
 	private Boolean allowed;
@@ -21,11 +21,12 @@ public class Client {
 	@OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
 	private List<Crime> crimes = new ArrayList<Crime>();
 
-	public Long getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

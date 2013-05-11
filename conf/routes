@@ -6,6 +6,7 @@
 GET     /                           								controllers.Application.index()
 PUT		/authenticate/district/										controllers.Application.authenticateDistrict()
 PUT		/authenticate/admin/										controllers.Application.authenticateAdmin()
+PUT		/authenticate/user/											controllers.Application.authenticateUser()
 
 # possible requests from the client side
 POST    /client/report/help											controllers.UsersReport.reportHelp()

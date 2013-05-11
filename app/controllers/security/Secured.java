@@ -2,6 +2,7 @@ package controllers.security;
 
 import model.operations.Admin;
 import model.operations.DistrictOperations;
+import model.operations.UserOperations;
 import play.mvc.Http.Context;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -26,6 +27,10 @@ public class Secured extends Security.Authenticator {
     
     public static boolean isOwnerOf(Long district) {
         return DistrictOperations.isOwner(district, Context.current().request().username());
+    }
+    
+    public static boolean isAllowed(String login){
+    	return UserOperations.isAlloved(login);
     }
 	
 }
