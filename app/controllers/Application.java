@@ -50,9 +50,10 @@ public class Application extends Controller {
 		JsonNode json = request().body().asJson();
 		
 		if(UserOperations.authenticate(json.findPath("id").getTextValue())){
+			session("login", "client");
 			return ok("logged in");
 		}
 		
-		return forbidden("wrong password");		
+		return badRequest("wrong password");		
 	}
 }
