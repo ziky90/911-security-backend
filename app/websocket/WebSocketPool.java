@@ -20,7 +20,7 @@ public class WebSocketPool {
 	
 	public static void connect(final long id,  In<JsonNode> in, Out<JsonNode> out){
 		
-		//DistrictOperations.isOwner(id, "praha");
+		DistrictOperations.isOwner(id, "praha");
 		activeSockets.put(id, out);
 		ObjectNode on = Json.newObject();
 		on.put("message", "sucessfuly launched");
