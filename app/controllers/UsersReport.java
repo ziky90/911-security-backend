@@ -21,7 +21,9 @@ import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import sun.misc.BASE64Decoder;
+import utilities.ObjectNodeCreator;
 import utilities.geo.Convertor;
+import websocket.WebSocketPool;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Point;
@@ -74,7 +76,8 @@ public class UsersReport extends Controller {
 
 				crime.setFlag("help");
 				crime.setActual(true);
-				// TODO put here some sending by websocket to the police office
+				
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createHelpObjectNode(json.findPath("lat").asDouble(), json.findPath("lon").asDouble()));
 
 				JPA.em().persist(crime);
 
@@ -127,7 +130,9 @@ public class UsersReport extends Controller {
 
 				crime.setFlag("danger");
 				crime.setActual(true);
-				// TODO put here some sending by websocket to the police office
+				
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDangerObjectNode(json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
+						.getTextValue()));
 
 				JPA.em().persist(crime);
 
@@ -180,8 +185,10 @@ public class UsersReport extends Controller {
 
 				crime.setFlag("details");
 				crime.setActual(true);
-				// TODO put here some sending by websocket to the police office
-
+				
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDetailsObjectNode(json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
+						.getTextValue()));
+				
 				JPA.em().persist(crime);
 
 				return ok("result details");
@@ -241,7 +248,8 @@ public class UsersReport extends Controller {
 
 				crime.setFlag("photo");
 				crime.setActual(true);
-				// TODO put here some sending by websocket to the police office
+				
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createPhotoObjectNode(json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("photo").asText()));
 
 				JPA.em().persist(crime);
 

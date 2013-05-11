@@ -1,1 +1,1 @@
-prepared WebSocket plus working REST API with authentication and authorization
+finished user's side REST API with authentication and ban possibility system
