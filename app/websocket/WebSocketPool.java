@@ -18,9 +18,9 @@ public class WebSocketPool {
 	private static Map<Long, Out<JsonNode>> activeSockets = new HashMap<Long, Out<JsonNode>>();
 	
 	
-	public static void connect(final long id,  In<JsonNode> in, Out<JsonNode> out){
+	public static void connect(final long id, final String password,  In<JsonNode> in, Out<JsonNode> out){
 		
-		DistrictOperations.isOwner(id, "praha");
+		//DistrictOperations.isOwner(id, "praha");
 		activeSockets.put(id, out);
 		ObjectNode on = Json.newObject();
 		on.put("message", "sucessfuly launched");

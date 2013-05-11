@@ -30,7 +30,7 @@ PUT		/district/information/										controllers.DistrictCommunication.updateInf
 DELETE 	/district/information/:id									controllers.DistrictCommunication.deleteInformation(id: Long)
 GET		/district/:idDistrict										controllers.DistrictCommunication.getAllInformations(idDistrict: Long)
 GET		/district/:id												controllers.DistrictCommunication.getInformation(id: Long)
-GET		/district/websocket/:id										controllers.DistrictCommunication.initWebSocket(id: Long)
+GET		/district/websocket/										controllers.DistrictCommunication.initWebSocket()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

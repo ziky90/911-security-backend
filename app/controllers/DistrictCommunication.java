@@ -10,8 +10,10 @@ import model.Info;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 
+
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
+import play.libs.F.Callback;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
@@ -148,50 +150,52 @@ public class DistrictCommunication extends Controller {
 		}
 	}
 
-	
-	public static WebSocket<JsonNode> initWebSocket(final long id) {
+	public static WebSocket<JsonNode> initWebSocket() {
 
-		
+		return new WebSocket<JsonNode>() {
 
-			return new WebSocket<JsonNode>() {
+			// Called when the Websocket Handshake is done.
+			public void onReady(final WebSocket.In<JsonNode> in,
+					final WebSocket.Out<JsonNode> out) {
 
-				// Called when the Websocket Handshake is done.
-				public void onReady(WebSocket.In<JsonNode> in, WebSocket.Out<JsonNode> out) {
+				
+				in.onMessage(new Callback<JsonNode>(){
+					public void invoke(JsonNode event){
+						long id = event.get("id").asLong();
+						String password = event.get("password").asText();
+						WebSocketPool.connect(id, password, in, out);
+												
+					}
+				});
+				
+				
+				
+				/*
+				 * // TODO store somewhere the socket and implement writing //
+				 * from the clients
+				 * 
+				 * // For each event received on the socket, in.onMessage(new
+				 * Callback<JsonNode>() { public void invoke(JsonNode event) {
+				 * 
+				 * // Log events to the console // TODO implement here all the
+				 * possible messages // from the client
+				 * System.out.println(event);
+				 * 
+				 * } });
+				 * 
+				 * // When the socket is closed. in.onClose(new Callback0() {
+				 * public void invoke() {
+				 * 
+				 * System.out.println("Disconnected");
+				 * 
+				 * } });
+				 * 
+				 * // Send a single 'Hello!' message ObjectNode on =
+				 * Json.newObject(); on.put("greeting", "hello"); out.write(on);
+				 */
+			}
 
-					WebSocketPool.connect(id, in, out);
-					/*
-					// TODO store somewhere the socket and implement writing
-					// from the clients
+		};
 
-					// For each event received on the socket,
-					in.onMessage(new Callback<JsonNode>() {
-						public void invoke(JsonNode event) {
-
-							// Log events to the console
-							// TODO implement here all the possible messages
-							// from the client
-							System.out.println(event);
-
-						}
-					});
-
-					// When the socket is closed.
-					in.onClose(new Callback0() {
-						public void invoke() {
-
-							System.out.println("Disconnected");
-
-						}
-					});
-
-					// Send a single 'Hello!' message
-					ObjectNode on = Json.newObject();
-					on.put("greeting", "hello");
-					out.write(on);*/
-				}
-
-			};
-
-		
 	}
 }

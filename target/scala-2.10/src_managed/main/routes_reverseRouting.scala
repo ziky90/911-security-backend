@@ -1,6 +1,6 @@
 // @SOURCE:/Users/zikesjan/Documents/workspace/911security-backend/conf/routes
-// @HASH:25fb722fb0429fe179646ff4c360ddf8064378a8
-// @DATE:Sat May 11 18:06:13 CEST 2013
+// @HASH:0b84b6f47246c415bd7560207f37c6672def0602
+// @DATE:Sat May 11 18:29:36 CEST 2013
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -58,6 +58,12 @@ def at(file:String): Call = {
 class ReverseDistrictCommunication {
     
 
+// @LINE:33
+def initWebSocket(): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "district/websocket/")
+}
+                                                
+
 // @LINE:29
 def updateInformation(): Call = {
    Call("PUT", _prefix + { _defaultPrefix } + "district/information/")
@@ -79,12 +85,6 @@ def postInformation(): Call = {
 // @LINE:31
 def getAllInformations(idDistrict:Long): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "district/" + implicitly[PathBindable[Long]].unbind("idDistrict", idDistrict))
-}
-                                                
-
-// @LINE:33
-def initWebSocket(id:Long): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "district/websocket/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                 
 
@@ -272,6 +272,17 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 class ReverseDistrictCommunication {
     
 
+// @LINE:33
+def initWebSocket : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.DistrictCommunication.initWebSocket",
+   """
+      function() {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/websocket/"})
+      }
+   """
+)
+                        
+
 // @LINE:29
 def updateInformation : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.DistrictCommunication.updateInformation",
@@ -311,17 +322,6 @@ def getAllInformations : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function(idDistrict) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("idDistrict", idDistrict)})
-      }
-   """
-)
-                        
-
-// @LINE:33
-def initWebSocket : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.DistrictCommunication.initWebSocket",
-   """
-      function(id) {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/websocket/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
       }
    """
 )
@@ -581,6 +581,12 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 class ReverseDistrictCommunication {
     
 
+// @LINE:33
+def initWebSocket(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.DistrictCommunication.initWebSocket(), HandlerDef(this, "controllers.DistrictCommunication", "initWebSocket", Seq(), "GET", """""", _prefix + """district/websocket/""")
+)
+                      
+
 // @LINE:29
 def updateInformation(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.DistrictCommunication.updateInformation(), HandlerDef(this, "controllers.DistrictCommunication", "updateInformation", Seq(), "PUT", """""", _prefix + """district/information/""")
@@ -602,12 +608,6 @@ def postInformation(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:31
 def getAllInformations(idDistrict:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.DistrictCommunication.getAllInformations(idDistrict), HandlerDef(this, "controllers.DistrictCommunication", "getAllInformations", Seq(classOf[Long]), "GET", """""", _prefix + """district/$idDistrict<[^/]+>""")
-)
-                      
-
-// @LINE:33
-def initWebSocket(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.DistrictCommunication.initWebSocket(id), HandlerDef(this, "controllers.DistrictCommunication", "initWebSocket", Seq(classOf[Long]), "GET", """""", _prefix + """district/websocket/$id<[^/]+>""")
 )
                       
 
