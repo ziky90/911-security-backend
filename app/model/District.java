@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,10 +36,10 @@ public class District {
 	private String password;
 	
 	@OneToMany(mappedBy = "district", cascade = CascadeType.ALL)
-	private List<Info> infos;
+	private List<Info> infos = new ArrayList<Info>();
 	
 	@OneToMany(mappedBy = "district", cascade = CascadeType.ALL)
-	private List<Crime> crimes;
+	private List<Crime> crimes = new ArrayList<Crime>();;
 	
 	
 	public Long getId() {

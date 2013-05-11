@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,7 @@ public class Client {
 	private Boolean allowed;
 	
 	@OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
-	private List<Crime> crimes;
+	private List<Crime> crimes = new ArrayList<Crime>();
 
 	public Long getId() {
 		return id;
