@@ -2,7 +2,6 @@ package controllers;
 
 import model.operations.Admin;
 import model.operations.DistrictOperations;
-import model.operations.UserOperations;
 
 import org.codehaus.jackson.JsonNode;
 
@@ -44,16 +43,4 @@ public class Application extends Controller {
 		return badRequest("wrong password");		
 	}
 	
-	@Transactional
-	@BodyParser.Of(BodyParser.Json.class)
-	public static Result authenticateUser(){
-		JsonNode json = request().body().asJson();
-		
-		if(UserOperations.authenticate(json.findPath("id").getTextValue())){
-			session("login", "client");
-			return ok("logged in");
-		}
-		
-		return badRequest("wrong password");		
-	}
 }

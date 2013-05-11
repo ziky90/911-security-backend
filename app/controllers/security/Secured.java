@@ -29,8 +29,5 @@ public class Secured extends Security.Authenticator {
         return DistrictOperations.isOwner(district, Context.current().request().username());
     }
     
-    public static boolean isAllowed(String login){
-    	return UserOperations.isAlloved(login);
-    }
 	
 }

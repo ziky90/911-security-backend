@@ -9,23 +9,17 @@ import play.db.jpa.Transactional;
 
 public class UserOperations {
 
-	@Transactional(readOnly = true)
-	public static boolean isAlloved(String login){
-		Query query = JPA.em().createQuery("SELECT c FROM  Client c WHERE c.uid = :uid");	
-		Client c = (Client) query.setParameter("uid", login).getSingleResult();
-		return c.getAllowed();
-	}
 	
 	
 	@Transactional
-	public static boolean authenticate(String login){
+	public static boolean isAllowed(String uid){
 		Query query = JPA.em().createQuery("SELECT c FROM  Client c WHERE c.uid = :uid");
 		Client c = null;
 		try{
-			c = (Client) query.setParameter("uid", login).getSingleResult();
+			c = (Client) query.setParameter("uid", uid).getSingleResult();
 		}catch(NoResultException nre){
 			c = new Client();
-			c.setUid(login);
+			c.setUid(uid);
 			c.setAllowed(true);
 			JPA.em().persist(c);
 		}
