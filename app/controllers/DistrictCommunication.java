@@ -161,9 +161,14 @@ public class DistrictCommunication extends Controller {
 				
 				in.onMessage(new Callback<JsonNode>(){
 					public void invoke(JsonNode event){
-						long id = event.get("id").asLong();
-						String password = event.get("password").asText();
-						WebSocketPool.connect(id, password, in, out);
+						
+						if(event.get("status").asText().equals("login")){
+							long id = event.get("id").asLong();
+							String password = event.get("password").asText();
+							WebSocketPool.connect(id, password, in, out);
+						}else{
+							
+						}
 												
 					}
 				});

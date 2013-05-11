@@ -21,10 +21,16 @@ public class WebSocketPool {
 	public static void connect(final long id, final String password,  In<JsonNode> in, Out<JsonNode> out){
 		
 		//DistrictOperations.isOwner(id, "praha");
-		activeSockets.put(id, out);
-		ObjectNode on = Json.newObject();
-		on.put("message", "sucessfuly launched");
-		out.write(on);
+		if(DistrictOperations.isOwnerTransact(id, password)){
+			activeSockets.put(id, out);
+			ObjectNode on = Json.newObject();
+			on.put("message", "sucessfuly launched");
+			out.write(on);
+		}else{
+			ObjectNode on = Json.newObject();
+			on.put("message", "your id or password is incorrect");
+			out.write(on);
+		}
 		
 	}
 	
