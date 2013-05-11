@@ -75,9 +75,11 @@ public class AdminCommunication extends Controller {
 				}
 
 				district.setBounds((Polygon) geom);
-				district.setPassword(BCrypt.hashpw(json.findPath("password").getTextValue(), BCrypt.gensalt()));
-				
-				//System.out.println(BCrypt.checkpw(json.findPath("password").getTextValue(), district.getPassword()));
+				district.setPassword(BCrypt.hashpw(json.findPath("password")
+						.getTextValue(), BCrypt.gensalt()));
+
+				// System.out.println(BCrypt.checkpw(json.findPath("password").getTextValue(),
+				// district.getPassword()));
 
 				JPA.em().persist(district);
 
@@ -128,7 +130,8 @@ public class AdminCommunication extends Controller {
 
 				district.setBounds((Polygon) geom);
 
-				district.setPassword(BCrypt.hashpw(json.findPath("password").getTextValue(), BCrypt.gensalt()));
+				district.setPassword(BCrypt.hashpw(json.findPath("password")
+						.getTextValue(), BCrypt.gensalt()));
 
 				JPA.em().persist(district);
 				// TODO return the id of the district
@@ -196,9 +199,13 @@ public class AdminCommunication extends Controller {
 					crime.put("id", c.getId());
 					crime.put("text", c.getFlag());
 					crime.put("description", c.getDescription());
-					BASE64Encoder encoder = new BASE64Encoder();
-					String image = encoder.encode(c.getPhoto());
-					crime.put("photo", image);
+					if (c.getPhoto() != null) {
+						BASE64Encoder encoder = new BASE64Encoder();
+						String image = encoder.encode(c.getPhoto());
+						crime.put("photo", image);
+					}else{
+						crime.put("photo", "");
+					}
 				}
 			}
 			// result.p
@@ -249,9 +256,13 @@ public class AdminCommunication extends Controller {
 				crime.put("id", c.getId());
 				crime.put("text", c.getFlag());
 				crime.put("description", c.getDescription());
-				BASE64Encoder encoder = new BASE64Encoder();
-				String image = encoder.encode(c.getPhoto());
-				crime.put("photo", image);
+				if (c.getPhoto() != null) {
+					BASE64Encoder encoder = new BASE64Encoder();
+					String image = encoder.encode(c.getPhoto());
+					crime.put("photo", image);
+				}else{
+					crime.put("photo", "");
+				}
 			}
 
 			return ok(result);
