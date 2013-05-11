@@ -30,13 +30,13 @@ public class DistrictOperations {
 		
 	}
 	
-	
 	public static boolean isOwnerTransact(long district, String password){
-		EntityTransaction t = JPA.em().getTransaction();
-		t.begin();
+		//EntityTransaction t = JPA.em().getTransaction();
+		//t.begin();
 		Query query = JPA.em().createQuery("SELECT d FROM  District d WHERE d.id = :districtId");
+		System.out.println("p0");
 		District d = (District) query.setParameter("districtId", district).getSingleResult();
-		t.commit();
+		//t.commit();
 		if(d == null){
 			return false;
 		}
