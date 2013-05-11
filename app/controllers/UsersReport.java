@@ -19,6 +19,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import sun.misc.BASE64Decoder;
 import utilities.geo.Convertor;
 
 import com.vividsolutions.jts.geom.Geometry;
@@ -202,7 +203,9 @@ public class UsersReport extends Controller{
 			
 			crime.setDescription(json.findPath("description").getTextValue());
 			try {
-				crime.setPhoto(json.findPath("photo").getBinaryValue());			//TODO solve photo uploading
+				BASE64Decoder decoder = new BASE64Decoder();
+				byte[] decodedBytes = decoder.decodeBuffer(json.findPath("photo").asText());
+				crime.setPhoto(decodedBytes);			//TODO solve photo uploading
 			} catch (IOException e) {
 				return badRequest("invalid photo");
 			}					

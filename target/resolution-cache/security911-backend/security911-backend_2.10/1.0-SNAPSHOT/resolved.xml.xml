@@ -4,7 +4,7 @@
 		module="security911-backend_2.10"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20130511094058"
+		publication="20130511095032"
 	>
 		<description>
 		security911-backend
