@@ -1,1 +1,1 @@
-implemented basic security on some REST APIs
+prepared WebSocket plus working REST API with authentication and authorization

@@ -7,10 +7,10 @@
 		revision="1.0-SNAPSHOT"
 		conf="runtime-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom"
-		date="20130509191335"/>
+		date="20130511094058"/>
 	<dependencies>
 		<module organisation="play" name="play-java-jpa_2.10">
-			<revision name="2.1.0" status="release" pubdate="20130204133541" resolver="local" artresolver="local" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="69">
+			<revision name="2.1.0" status="release" pubdate="20130204133541" resolver="local" artresolver="local" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="70">
 				<metadata-artifact status="no" details="" size="1892" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/play/play-java-jpa_2.10/ivy-2.1.0.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/play/play-java-jpa_2.10/2.1.0/ivys/ivy.xml"/>
 				<caller organisation="security911-backend" name="security911-backend_2.10" conf="optional, compile, runtime, runtime-internal" rev="2.1.0" rev-constraint-default="2.1.0" rev-constraint-dynamic="2.1.0" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
@@ -21,7 +21,7 @@
 			</revision>
 		</module>
 		<module organisation="play" name="play-java-jdbc_2.10">
-			<revision name="2.1.0" status="release" pubdate="20130204133534" resolver="local" artresolver="local" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="64">
+			<revision name="2.1.0" status="release" pubdate="20130204133534" resolver="local" artresolver="local" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="65">
 				<metadata-artifact status="no" details="" size="1863" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/play/play-java-jdbc_2.10/ivy-2.1.0.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/play/play-java-jdbc_2.10/2.1.0/ivys/ivy.xml"/>
 				<caller organisation="security911-backend" name="security911-backend_2.10" conf="optional, compile, runtime, runtime-internal" rev="2.1.0" rev-constraint-default="2.1.0" rev-constraint-dynamic="2.1.0" callerrev="1.0-SNAPSHOT"/>
 				<caller organisation="play" name="play-java-jpa_2.10" conf="compile" rev="2.1.0" rev-constraint-default="2.1.0" rev-constraint-dynamic="2.1.0" callerrev="2.1.0"/>
@@ -33,7 +33,7 @@
 			</revision>
 		</module>
 		<module organisation="play" name="play-jdbc_2.10">
-			<revision name="2.1.0" status="release" pubdate="20130204133534" resolver="local" artresolver="local" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="65">
+			<revision name="2.1.0" status="release" pubdate="20130204133534" resolver="local" artresolver="local" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="66">
 				<metadata-artifact status="no" details="" size="2337" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/play/play-jdbc_2.10/ivy-2.1.0.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/play/play-jdbc_2.10/2.1.0/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java-jdbc_2.10" conf="compile" rev="2.1.0" rev-constraint-default="2.1.0" rev-constraint-dynamic="2.1.0" callerrev="2.1.0"/>
 				<artifacts>
@@ -44,7 +44,7 @@
 			</revision>
 		</module>
 		<module organisation="tyrex" name="tyrex">
-			<revision name="1.0.1" status="release" pubdate="20051108112044" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="68">
+			<revision name="1.0.1" status="release" pubdate="20051108112044" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="69">
 				<metadata-artifact status="no" details="" size="2165" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/tyrex/tyrex/ivy-1.0.1.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/tyrex/tyrex/1.0.1/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-jdbc_2.10" conf="compile" rev="1.0.1" rev-constraint-default="1.0.1" rev-constraint-dynamic="1.0.1" callerrev="2.1.0"/>
 				<artifacts>
@@ -55,7 +55,7 @@
 			</revision>
 		</module>
 		<module organisation="com.h2database" name="h2">
-			<revision name="1.3.168" status="release" pubdate="20120713041808" resolver="local" artresolver="local" homepage="http://www.h2database.com" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="67">
+			<revision name="1.3.168" status="release" pubdate="20120713041808" resolver="local" artresolver="local" homepage="http://www.h2database.com" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="68">
 				<license name="The H2 License, Version 1.0" url="http://h2database.com/html/license.html"/>
 				<metadata-artifact status="no" details="" size="2326" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/com.h2database/h2/ivy-1.3.168.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/com.h2database/h2/1.3.168/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-jdbc_2.10" conf="compile" rev="1.3.168" rev-constraint-default="1.3.168" rev-constraint-dynamic="1.3.168" callerrev="2.1.0"/>
@@ -67,7 +67,7 @@
 			</revision>
 		</module>
 		<module organisation="com.jolbox" name="bonecp">
-			<revision name="0.7.1.RELEASE" status="release" pubdate="20110405010240" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="66">
+			<revision name="0.7.1.RELEASE" status="release" pubdate="20110405010240" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="67">
 				<metadata-artifact status="no" details="" size="8731" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/com.jolbox/bonecp/ivy-0.7.1.RELEASE.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/com.jolbox/bonecp/0.7.1.RELEASE/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-jdbc_2.10" conf="compile" rev="0.7.1.RELEASE" rev-constraint-default="0.7.1.RELEASE" rev-constraint-dynamic="0.7.1.RELEASE" callerrev="2.1.0"/>
 				<artifacts>
@@ -78,7 +78,7 @@
 			</revision>
 		</module>
 		<module organisation="play" name="play-java_2.10">
-			<revision name="2.1.0" status="release" pubdate="20130204133532" resolver="local" artresolver="local" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="52">
+			<revision name="2.1.0" status="release" pubdate="20130204133532" resolver="local" artresolver="local" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="53">
 				<metadata-artifact status="no" details="" size="4112" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/play/play-java_2.10/ivy-2.1.0.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/play/play-java_2.10/2.1.0/ivys/ivy.xml"/>
 				<caller organisation="security911-backend" name="security911-backend_2.10" conf="optional, compile, runtime, runtime-internal" rev="2.1.0" rev-constraint-default="2.1.0" rev-constraint-dynamic="2.1.0" callerrev="1.0-SNAPSHOT"/>
 				<caller organisation="play" name="play-jdbc_2.10" conf="compile" rev="2.1.0" rev-constraint-default="2.1.0" rev-constraint-dynamic="2.1.0" callerrev="2.1.0"/>
@@ -90,7 +90,7 @@
 			</revision>
 		</module>
 		<module organisation="javax.servlet" name="javax.servlet-api">
-			<revision name="3.0.1" status="release" pubdate="20121010204139" resolver="local" artresolver="local" homepage="http://servlet-spec.java.net" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="63">
+			<revision name="3.0.1" status="release" pubdate="20121010204139" resolver="local" artresolver="local" homepage="http://servlet-spec.java.net" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="64">
 				<license name="CDDL + GPLv2 with classpath exception" url="https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html"/>
 				<metadata-artifact status="no" details="" size="3664" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/javax.servlet/javax.servlet-api/ivy-3.0.1.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/javax.servlet/javax.servlet-api/3.0.1/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java_2.10" conf="compile" rev="3.0.1" rev-constraint-default="3.0.1" rev-constraint-dynamic="3.0.1" callerrev="2.1.0"/>
@@ -102,7 +102,7 @@
 			</revision>
 		</module>
 		<module organisation="com.google.code.findbugs" name="jsr305">
-			<revision name="2.0.1" status="release" pubdate="20121011004935" resolver="local" artresolver="local" homepage="http://findbugs.sourceforge.net/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="62">
+			<revision name="2.0.1" status="release" pubdate="20121011004935" resolver="local" artresolver="local" homepage="http://findbugs.sourceforge.net/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="63">
 				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
 				<metadata-artifact status="no" details="" size="2382" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/com.google.code.findbugs/jsr305/ivy-2.0.1.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/com.google.code.findbugs/jsr305/2.0.1/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java_2.10" conf="compile" rev="2.0.1" rev-constraint-default="2.0.1" rev-constraint-dynamic="2.0.1" callerrev="2.1.0"/>
@@ -114,7 +114,7 @@
 			</revision>
 		</module>
 		<module organisation="com.google.guava" name="guava">
-			<revision name="13.0.1" status="release" pubdate="20121010210806" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="61">
+			<revision name="13.0.1" status="release" pubdate="20121010210806" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="62">
 				<metadata-artifact status="no" details="" size="3495" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/com.google.guava/guava/ivy-13.0.1.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/com.google.guava/guava/13.0.1/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java_2.10" conf="compile" rev="13.0.1" rev-constraint-default="13.0.1" rev-constraint-dynamic="13.0.1" callerrev="2.1.0"/>
 				<artifacts>
@@ -125,7 +125,7 @@
 			</revision>
 		</module>
 		<module organisation="org.reflections" name="reflections">
-			<revision name="0.9.8" status="release" pubdate="20121010220048" resolver="local" artresolver="local" homepage="http://code.google.com/p/reflections/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="60">
+			<revision name="0.9.8" status="release" pubdate="20121010220048" resolver="local" artresolver="local" homepage="http://code.google.com/p/reflections/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="61">
 				<metadata-artifact status="no" details="" size="3668" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.reflections/reflections/ivy-0.9.8.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/org.reflections/reflections/0.9.8/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java_2.10" conf="compile" rev="0.9.8" rev-constraint-default="0.9.8" rev-constraint-dynamic="0.9.8" callerrev="2.1.0"/>
 				<artifacts>
@@ -136,7 +136,7 @@
 			</revision>
 		</module>
 		<module organisation="org.springframework" name="spring-context">
-			<revision name="3.1.2.RELEASE" status="release" pubdate="20121010224234" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="57">
+			<revision name="3.1.2.RELEASE" status="release" pubdate="20121010224234" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="58">
 				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
 				<metadata-artifact status="no" details="" size="10999" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.springframework/spring-context/ivy-3.1.2.RELEASE.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/org.springframework/spring-context/3.1.2.RELEASE/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java_2.10" conf="compile" rev="3.1.2.RELEASE" rev-constraint-default="3.1.2.RELEASE" rev-constraint-dynamic="3.1.2.RELEASE" callerrev="2.1.0"/>
@@ -148,7 +148,7 @@
 			</revision>
 		</module>
 		<module organisation="org.springframework" name="spring-beans">
-			<revision name="3.1.2.RELEASE" status="release" pubdate="20121010224227" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="59">
+			<revision name="3.1.2.RELEASE" status="release" pubdate="20121010224227" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="60">
 				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
 				<metadata-artifact status="no" details="" size="7075" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.springframework/spring-beans/ivy-3.1.2.RELEASE.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/org.springframework/spring-beans/3.1.2.RELEASE/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java_2.10" conf="compile" rev="3.1.2.RELEASE" rev-constraint-default="3.1.2.RELEASE" rev-constraint-dynamic="3.1.2.RELEASE" callerrev="2.1.0"/>
@@ -160,7 +160,7 @@
 			</revision>
 		</module>
 		<module organisation="org.springframework" name="spring-core">
-			<revision name="3.1.2.RELEASE" status="release" pubdate="20121010224231" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="58">
+			<revision name="3.1.2.RELEASE" status="release" pubdate="20121010224231" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="59">
 				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
 				<metadata-artifact status="no" details="" size="7323" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.springframework/spring-core/ivy-3.1.2.RELEASE.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/org.springframework/spring-core/3.1.2.RELEASE/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java_2.10" conf="compile" rev="3.1.2.RELEASE" rev-constraint-default="3.1.2.RELEASE" rev-constraint-dynamic="3.1.2.RELEASE" callerrev="2.1.0"/>
@@ -172,7 +172,7 @@
 			</revision>
 		</module>
 		<module organisation="org.hibernate" name="hibernate-validator">
-			<revision name="4.3.0.Final" status="release" pubdate="20121011011604" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="54">
+			<revision name="4.3.0.Final" status="release" pubdate="20121011011604" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="55">
 				<metadata-artifact status="no" details="" size="7936" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.hibernate/hibernate-validator/ivy-4.3.0.Final.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/org.hibernate/hibernate-validator/4.3.0.Final/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java_2.10" conf="compile" rev="4.3.0.Final" rev-constraint-default="4.3.0.Final" rev-constraint-dynamic="4.3.0.Final" callerrev="2.1.0"/>
 				<artifacts>
@@ -183,7 +183,7 @@
 			</revision>
 		</module>
 		<module organisation="org.jboss.logging" name="jboss-logging">
-			<revision name="3.1.0.CR2" status="release" pubdate="20121011011609" resolver="local" artresolver="local" homepage="http://www.jboss.org" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="56">
+			<revision name="3.1.0.CR2" status="release" pubdate="20121011011609" resolver="local" artresolver="local" homepage="http://www.jboss.org" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="57">
 				<license name="GNU Lesser General Public License, version 2.1" url="http://www.gnu.org/licenses/lgpl-2.1.txt"/>
 				<metadata-artifact status="no" details="" size="7344" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.jboss.logging/jboss-logging/ivy-3.1.0.CR2.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/org.jboss.logging/jboss-logging/3.1.0.CR2/ivys/ivy.xml"/>
 				<caller organisation="org.hibernate" name="hibernate-validator" conf="default, compile, runtime, master" rev="3.1.0.CR2" rev-constraint-default="3.1.0.CR2" rev-constraint-dynamic="3.1.0.CR2" callerrev="4.3.0.Final"/>
@@ -195,13 +195,25 @@
 			</revision>
 		</module>
 		<module organisation="org.yaml" name="snakeyaml">
-			<revision name="1.10" status="release" pubdate="20121011011603" resolver="local" artresolver="local" homepage="http://www.snakeyaml.org" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="53">
+			<revision name="1.10" status="release" pubdate="20121011011603" resolver="local" artresolver="local" homepage="http://www.snakeyaml.org" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="54">
 				<license name="Apache License Version 2.0" url="LICENSE.txt"/>
 				<metadata-artifact status="no" details="" size="3397" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.yaml/snakeyaml/ivy-1.10.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/org.yaml/snakeyaml/1.10/ivys/ivy.xml"/>
 				<caller organisation="play" name="play-java_2.10" conf="compile" rev="1.10" rev-constraint-default="1.10" rev-constraint-dynamic="1.10" callerrev="2.1.0"/>
 				<artifacts>
 					<artifact name="snakeyaml" type="bundle" ext="jar" status="no" details="" size="266959" time="0" location="/Users/zikesjan/play-2.1.0/repository/local/org.yaml/snakeyaml/1.10/bundles/snakeyaml.jar">
 						<origin-location is-local="true" location="/Users/zikesjan/play-2.1.0/repository/local/org.yaml/snakeyaml/1.10/bundles/snakeyaml.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.mindrot" name="jbcrypt">
+			<revision name="0.3m" status="release" pubdate="20100517044639" resolver="public" artresolver="public" homepage="http://www.mindrot.org/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="52">
+				<license name="ISC/BSD License"/>
+				<metadata-artifact status="no" details="" size="2822" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.mindrot/jbcrypt/ivy-0.3m.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/mindrot/jbcrypt/0.3m/jbcrypt-0.3m.pom"/>
+				<caller organisation="security911-backend" name="security911-backend_2.10" conf="optional, compile, runtime, runtime-internal" rev="0.3m" rev-constraint-default="0.3m" rev-constraint-dynamic="0.3m" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="jbcrypt" type="jar" ext="jar" status="no" details="" size="17750" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.mindrot/jbcrypt/jars/jbcrypt-0.3m.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/mindrot/jbcrypt/0.3m/jbcrypt-0.3m.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
@@ -328,7 +340,7 @@
 			</revision>
 		</module>
 		<module organisation="javax.validation" name="validation-api">
-			<revision name="1.0.0.GA" status="release" pubdate="20121010204058" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="55">
+			<revision name="1.0.0.GA" status="release" pubdate="20121010204058" resolver="local" artresolver="local" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="56">
 				<license name="Apache License, Version 2.0" url="license.txt"/>
 				<metadata-artifact status="no" details="" size="2312" time="0" location="/Users/zikesjan/play-2.1.0/framework/../repository/cache/javax.validation/validation-api/ivy-1.0.0.GA.xml" searched="false" origin-is-local="true" origin-location="/Users/zikesjan/play-2.1.0/repository/local/javax.validation/validation-api/1.0.0.GA/ivys/ivy.xml"/>
 				<caller organisation="org.hibernate" name="hibernate-validator" conf="default, compile, runtime, master" rev="1.0.0.GA" rev-constraint-default="1.0.0.GA" rev-constraint-dynamic="1.0.0.GA" callerrev="4.3.0.Final"/>

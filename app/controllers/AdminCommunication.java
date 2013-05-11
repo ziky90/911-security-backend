@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import model.Crime;
 import model.District;
 import model.Info;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
+import org.mindrot.jbcrypt.BCrypt;
 
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -41,46 +43,49 @@ public class AdminCommunication extends Controller {
 	@Transactional
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result createDistrict() {
-		JsonNode json = request().body().asJson();
+		if (Secured.isAdmin()) {
+			JsonNode json = request().body().asJson();
 
-		if (json == null) {
-			return badRequest("expecting json data");
-		} else {
-			
-			District district = new District();
-			district.setName(json.findPath("name").getTextValue());
-			district.setDescription(json.findPath("description").getTextValue());
+			if (json == null) {
+				return badRequest("expecting json data");
+			} else {
 
-			
+				District district = new District();
+				district.setName(json.findPath("name").getTextValue());
+				district.setDescription(json.findPath("description")
+						.getTextValue());
 
-			List<Point> points = new ArrayList<Point>();
-			WKTReader fromText = new WKTReader();
-			Geometry geom = null;
+				List<Point> points = new ArrayList<Point>();
+				WKTReader fromText = new WKTReader();
+				Geometry geom = null;
 
-			// Retrieving the set of points
-			for (JsonNode jn : json.findPath("points")) {
-				points.add(new Point(jn.findPath("lat").asLong(), jn.findPath("lon").asLong()));
+				// Retrieving the set of points
+				for (JsonNode jn : json.findPath("points")) {
+					points.add(new Point(jn.findPath("lat").asDouble(), jn
+							.findPath("lon").asDouble()));
+				}
+				String wktPolygon = Convertor.pointsToPolygon(points);
+				try {
+					geom = fromText.read(wktPolygon);
+				} catch (ParseException e) {
+					return badRequest("not a polygon 1: " + wktPolygon);
+				}
+				if (!geom.getGeometryType().equals("Polygon")) {
+					return badRequest("not a polygon 2");
+				}
+
+				district.setBounds((Polygon) geom);
+				district.setPassword(BCrypt.hashpw(json.findPath("password").getTextValue(), BCrypt.gensalt()));
+				
+				//System.out.println(BCrypt.checkpw(json.findPath("password").getTextValue(), district.getPassword()));
+
+				JPA.em().persist(district);
+
+				// TODO return new district id
+				return ok("result is" + district.getId());
 			}
-			String wktPolygon = Convertor.pointsToPolygon(points);
-			try {
-				geom = fromText.read(wktPolygon);
-			} catch (ParseException e) {
-				return badRequest("not a polygon 1: " + wktPolygon);
-			}
-			if (!geom.getGeometryType().equals("Polygon")) {
-				return badRequest("not a polygon 2");
-			}
-
-			district.setBounds((Polygon) geom);
-			district.setPassword(json.findPath("pasword").getTextValue());
-
-			
-			
-			JPA.em().persist(district);
-
-			// TODO return new district id
-			return ok("result is" + district.getId());
 		}
+		return forbidden("you do not have right to do this");
 	}
 
 	/**
@@ -91,42 +96,46 @@ public class AdminCommunication extends Controller {
 	@Transactional
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result modifyDistrict() {
-		JsonNode json = request().body().asJson();
-		if (json == null) {
-			return badRequest("expecting json data");
-		} else {
-			District district = JPA.em().find(District.class,
-					json.findPath("id").asLong());
-			district.setName(json.findPath("name").getTextValue());
-			district.setDescription(json.findPath("description").getTextValue());
+		if (Secured.isAdmin()) {
+			JsonNode json = request().body().asJson();
+			if (json == null) {
+				return badRequest("expecting json data");
+			} else {
+				District district = JPA.em().find(District.class,
+						json.findPath("id").asLong());
+				district.setName(json.findPath("name").getTextValue());
+				district.setDescription(json.findPath("description")
+						.getTextValue());
 
-			List<Point> points = new ArrayList<Point>();
-			WKTReader fromText = new WKTReader();
-			Geometry geom = null;
+				List<Point> points = new ArrayList<Point>();
+				WKTReader fromText = new WKTReader();
+				Geometry geom = null;
 
-			// Retrieving the set of points
-			for (JsonNode jn : json.findPath("points")) {
-				points.add(new Point(jn.findPath("lat").asLong(), jn.findPath(
-						"lon").asLong()));
+				// Retrieving the set of points
+				for (JsonNode jn : json.findPath("points")) {
+					points.add(new Point(jn.findPath("lat").asDouble(), jn
+							.findPath("lon").asDouble()));
+				}
+				String wktPolygon = Convertor.pointsToPolygon(points);
+				try {
+					geom = fromText.read(wktPolygon);
+				} catch (ParseException e) {
+					return badRequest();
+				}
+				if (!geom.getGeometryType().equals("Polygon")) {
+					return badRequest();
+				}
+
+				district.setBounds((Polygon) geom);
+
+				district.setPassword(BCrypt.hashpw(json.findPath("password").getTextValue(), BCrypt.gensalt()));
+
+				JPA.em().persist(district);
+				// TODO return the id of the district
+				return ok("modify district");
 			}
-			String wktPolygon = Convertor.pointsToPolygon(points);
-			try {
-				geom = fromText.read(wktPolygon);
-			} catch (ParseException e) {
-				return badRequest();
-			}
-			if (!geom.getGeometryType().equals("Polygon")) {
-				return badRequest();
-			}
-
-			district.setBounds((Polygon) geom);
-
-			district.setPassword(json.findPath("pasword").getTextValue());
-
-			JPA.em().persist(district);
-			// TODO return the id of the district
-			return ok("modify district");
 		}
+		return forbidden("you do not have right to do this");
 	}
 
 	/**
@@ -137,11 +146,13 @@ public class AdminCommunication extends Controller {
 	// TODO security is very important here
 	@Transactional
 	public static Result deleteDistrict(long id) {
+		if (Secured.isAdmin()) {
+			District district = JPA.em().find(District.class, id);
+			JPA.em().remove(district);
 
-		District district = JPA.em().find(District.class, id);
-		JPA.em().remove(district);
-
-		return ok("district deleted");
+			return ok("district deleted");
+		}
+		return forbidden("you do not have right to do this");
 
 	}
 
@@ -152,72 +163,96 @@ public class AdminCommunication extends Controller {
 	 */
 	@Transactional(readOnly = true)
 	public static Result listAllDistricts() {
-		Query query = JPA.em().createQuery("SELECT d FROM  District d");
-		List<District> districtsDB = query.getResultList();
-		
-		ObjectNode result = Json.newObject();
-		
-		ArrayNode districts = result.putArray("districts");
-		for (District r : districtsDB) {
-			ObjectNode district = districts.addObject();
-			district.put("id", r.getId());
-			district.put("name", r.getName());
-			district.put("description", r.getDescription());
+		if (Secured.isAdmin()) {
+			Query query = JPA.em().createQuery("SELECT d FROM  District d");
+			List<District> districtsDB = query.getResultList();
 
-			ArrayNode points = district.putArray("points");
+			ObjectNode result = Json.newObject();
 
-			List<Point> pts = Convertor.polygonToPoints(r.getBounds());
-			for(Point p : pts){
-				ObjectNode on = points.addObject();
-				on.put("lat", p.getLatiude());
-				on.put("lon", p.getLongtitude());
+			ArrayNode districts = result.putArray("districts");
+			for (District r : districtsDB) {
+				ObjectNode district = districts.addObject();
+				district.put("id", r.getId());
+				district.put("name", r.getName());
+				district.put("description", r.getDescription());
+
+				ArrayNode points = district.putArray("points");
+
+				List<Point> pts = Convertor.polygonToPoints(r.getBounds());
+				for (Point p : pts) {
+					ObjectNode on = points.addObject();
+					on.put("lat", p.getLatiude());
+					on.put("lon", p.getLongtitude());
+				}
+				ArrayNode infos = result.putArray("informations");
+				for (Info i : r.getInfos()) {
+					ObjectNode information = infos.addObject();
+					information.put("id", i.getId());
+					information.put("text", i.getTextInformation());
+				}
+				ArrayNode crimes = result.putArray("crimes");
+				for (Crime c : r.getCrimes()) {
+					ObjectNode crime = crimes.addObject();
+					crime.put("id", c.getId());
+					crime.put("text", c.getFlag());
+					crime.put("description", c.getDescription());
+					crime.put("photo", c.getPhoto());
+				}
 			}
-			ArrayNode infos = result.putArray("informations");
-			for (Info i : r.getInfos()) {
-				ObjectNode information = infos.addObject();
-				information.put("id", i.getId());
-				information.put("text", i.getTextInformation());
-			}
+			// result.p
+
+			return ok(result);
 		}
-		// result.p
-
-		return ok(result);
+		return forbidden("you do not have right to do this");
 	}
 
 	/**
 	 * method for district from the DB retrieval
 	 * 
-	 * @param id of the district
-	 *           
+	 * @param id
+	 *            of the district
+	 * 
 	 * @return district wrapped in the json
 	 */
 	@Transactional(readOnly = true)
 	public static Result getDistrict(Long id) {
-		District district = JPA.em().find(District.class, id);
+		if (Secured.isAdmin()) {
+			District district = JPA.em().find(District.class, id);
 
-		ObjectNode result = Json.newObject();
+			ObjectNode result = Json.newObject();
 
-		result.put("id", district.getId());
-		result.put("name", district.getName());
-		result.put("description", district.getDescription());
+			result.put("id", district.getId());
+			result.put("name", district.getName());
+			result.put("description", district.getDescription());
 
-		ArrayNode points = result.putArray("points");
+			ArrayNode points = result.putArray("points");
 
-		List<Point> pts = Convertor.polygonToPoints(district.getBounds());
-		for(Point p : pts){
-			ObjectNode on = points.addObject();
-			on.put("lat", p.getLatiude());
-			on.put("lon", p.getLongtitude());
+			List<Point> pts = Convertor.polygonToPoints(district.getBounds());
+			for (Point p : pts) {
+				ObjectNode on = points.addObject();
+				on.put("lat", p.getLatiude());
+				on.put("lon", p.getLongtitude());
+			}
+
+			ArrayNode infos = result.putArray("informations");
+			for (Info i : district.getInfos()) {
+				ObjectNode information = infos.addObject();
+				information.put("id", i.getId());
+				information.put("text", i.getTextInformation());
+			}
+
+			ArrayNode crimes = result.putArray("crimes");
+			for (Crime c : district.getCrimes()) {
+				ObjectNode crime = crimes.addObject();
+				crime.put("id", c.getId());
+				crime.put("text", c.getFlag());
+				crime.put("description", c.getDescription());
+				crime.put("photo", c.getPhoto());
+			}
+
+			return ok(result);
 		}
-
-		ArrayNode infos = result.putArray("informations");
-		for (Info i : district.getInfos()) {
-			ObjectNode information = infos.addObject();
-			information.put("id", i.getId());
-			information.put("text", i.getTextInformation());
-		}
-
-		return ok(result);
+		return forbidden("you do not have right to do this");
 	}
 
 }

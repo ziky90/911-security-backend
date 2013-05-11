@@ -25,6 +25,8 @@ public class Crime {
 	
 	private String flag;
 	
+	private boolean actual;
+	
 	@ManyToOne
 	private District district;
 	
@@ -78,6 +80,14 @@ public class Crime {
 
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+
+	public boolean isActual() {
+		return actual;
+	}
+
+	public void setActual(boolean actual) {
+		this.actual = actual;
 	}
 	
 	

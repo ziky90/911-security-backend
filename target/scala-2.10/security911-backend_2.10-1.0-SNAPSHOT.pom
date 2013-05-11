@@ -48,6 +48,11 @@
             <version>1.1</version>
         </dependency>
         <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.3m</version>
+        </dependency>
+        <dependency>
             <groupId>play</groupId>
             <artifactId>play-java_2.10</artifactId>
             <version>2.1.0</version>

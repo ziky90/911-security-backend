@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
@@ -22,13 +23,16 @@ public class District {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotNull
 	@Type(type = "org.hibernatespatial.GeometryUserType")
 	private Polygon bounds;
 	
+	@NotNull
 	private String name;
 	
 	private String description;
 	
+	@NotNull
 	private String password;
 	
 	@OneToMany(mappedBy = "district", cascade = CascadeType.ALL)

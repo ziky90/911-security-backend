@@ -37,7 +37,7 @@ public class UsersReport extends Controller{
 		} else {
 			Crime crime = new Crime();
 			
-			String wktPoint = Convertor.pointFromCoordinates(json.findPath("lat").asLong(), json.findPath("lon").asLong());
+			String wktPoint = Convertor.pointFromCoordinates(json.findPath("lat").asDouble(), json.findPath("lon").asDouble());
 			WKTReader fromText = new WKTReader();
 			Geometry geom = null;
 
@@ -56,6 +56,7 @@ public class UsersReport extends Controller{
 			Query query = JPA.em().createQuery("SELECT d FROM  District d");
 			List<District> districts = query.getResultList();
 			
+						
 			for(District d : districts){
 				if(d.getBounds().contains(geom)){
 					crime.setDistrict(d);
@@ -63,7 +64,13 @@ public class UsersReport extends Controller{
 				}
 			}
 			
+			if(crime.getDistrict() == null){
+				return notFound("district not found");
+			}
+			
+			
 			crime.setFlag("help");
+			crime.setActual(true);
 			//TODO put here some sending by websocket to the police office
 
 			JPA.em().persist(crime);
@@ -82,7 +89,7 @@ public class UsersReport extends Controller{
 		} else {
 			Crime crime = new Crime();
 			
-			String wktPoint = Convertor.pointFromCoordinates(json.findPath("lat").asLong(), json.findPath("lon").asLong());
+			String wktPoint = Convertor.pointFromCoordinates(json.findPath("lat").asDouble(), json.findPath("lon").asDouble());
 			WKTReader fromText = new WKTReader();
 			Geometry geom = null;
 
@@ -110,6 +117,7 @@ public class UsersReport extends Controller{
 			}
 			
 			crime.setFlag("danger");
+			crime.setActual(true);
 			//TODO put here some sending by websocket to the police office
 
 			JPA.em().persist(crime);
@@ -128,7 +136,7 @@ public class UsersReport extends Controller{
 		} else {
 			Crime crime = new Crime();
 			
-			String wktPoint = Convertor.pointFromCoordinates(json.findPath("lat").asLong(), json.findPath("lon").asLong());
+			String wktPoint = Convertor.pointFromCoordinates(json.findPath("lat").asDouble(), json.findPath("lon").asDouble());
 			WKTReader fromText = new WKTReader();
 			Geometry geom = null;
 
@@ -144,11 +152,7 @@ public class UsersReport extends Controller{
 			crime.setPoint((Point) geom);
 			
 			crime.setDescription(json.findPath("description").getTextValue());
-			try {
-				crime.setPhoto(json.findPath("photo").getBinaryValue());			//TODO deal with posibility being null here
-			} catch (IOException e) {
-				return badRequest("invalid photo");
-			}	
+			
 			
 			Query query = JPA.em().createQuery("SELECT d FROM  District d");
 			List<District> districts = query.getResultList();
@@ -161,6 +165,7 @@ public class UsersReport extends Controller{
 			}
 			
 			crime.setFlag("details");
+			crime.setActual(true);
 			//TODO put here some sending by websocket to the police office
 
 			JPA.em().persist(crime);
@@ -180,7 +185,7 @@ public class UsersReport extends Controller{
 		} else {
 			Crime crime = new Crime();
 			
-			String wktPoint = Convertor.pointFromCoordinates(json.findPath("lat").asLong(), json.findPath("lon").asLong());
+			String wktPoint = Convertor.pointFromCoordinates(json.findPath("lat").asDouble(), json.findPath("lon").asDouble());
 			WKTReader fromText = new WKTReader();
 			Geometry geom = null;
 
@@ -213,6 +218,7 @@ public class UsersReport extends Controller{
 			}
 			
 			crime.setFlag("photo");
+			crime.setActual(true);
 			//TODO put here some sending by websocket to the police office
 
 			JPA.em().persist(crime);
@@ -225,7 +231,7 @@ public class UsersReport extends Controller{
 	
 	
 	@Transactional(readOnly=true)
-	public static Result getInfo(long lat, long lon){
+	public static Result getInfo(double lat, double lon){
 		District district = null;
 		
 		String wktPoint = Convertor.pointFromCoordinates(lat, lon);
@@ -250,7 +256,9 @@ public class UsersReport extends Controller{
 				break;
 			}
 		}
-		
+		if(district == null){
+			return badRequest("no district found for your area");
+		}
 		ObjectNode result = Json.newObject();
 		result.put("name", district.getName());
 		result.put("description", district.getDescription());

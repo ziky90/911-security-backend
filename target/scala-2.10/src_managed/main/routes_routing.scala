@@ -1,6 +1,6 @@
 // @SOURCE:/Users/zikesjan/Documents/workspace/911security-backend/conf/routes
-// @HASH:2fd3ae5f04081051d0d87dc1ee6de9dc0869b46b
-// @DATE:Thu May 09 19:13:35 CEST 2013
+// @HASH:25fb722fb0429fe179646ff4c360ddf8064378a8
+// @DATE:Sat May 11 09:40:58 CEST 2013
 
 
 import play.core._
@@ -57,7 +57,7 @@ private[this] lazy val controllers_UsersReport_reportPhoto6 = Route("POST", Path
         
 
 // @LINE:15
-private[this] lazy val controllers_UsersReport_getInfo7 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("client/info/"))))
+private[this] lazy val controllers_UsersReport_getInfo7 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("client/info/"),DynamicPart("lat", """[^/]+"""),StaticPart("/"),DynamicPart("lon", """[^/]+"""))))
         
 
 // @LINE:18
@@ -104,10 +104,14 @@ private[this] lazy val controllers_DistrictCommunication_getAllInformations17 = 
 private[this] lazy val controllers_DistrictCommunication_getInformation18 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("district/"),DynamicPart("id", """[^/]+"""))))
         
 
-// @LINE:35
-private[this] lazy val controllers_Assets_at19 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+"""))))
+// @LINE:33
+private[this] lazy val controllers_DistrictCommunication_initWebSocket19 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("district/websocket/"),DynamicPart("id", """[^/]+"""))))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate/district/""","""controllers.Application.authenticateDistrict()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate/admin/""","""controllers.Application.authenticateAdmin()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/report/help""","""controllers.UsersReport.reportHelp()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/report/danger""","""controllers.UsersReport.reportDanger()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/report/details""","""controllers.UsersReport.reportDetails()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/report/photo""","""controllers.UsersReport.reportPhoto()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/info/""","""controllers.UsersReport.getInfo(lat:Long, lon:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/news""","""controllers.UserInformationRequest.getInfoFeed(lat:Long, lon:Long, oldest:Long)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/""","""controllers.AdminCommunication.createDistrict()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/""","""controllers.AdminCommunication.modifyDistrict()"""),("""DELETE""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/$id<[^/]+>""","""controllers.AdminCommunication.deleteDistrict(id:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/""","""controllers.AdminCommunication.listAllDistricts()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/$id<[^/]+>""","""controllers.AdminCommunication.getDistrict(id:Long)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/information/""","""controllers.DistrictCommunication.postInformation()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/information/""","""controllers.DistrictCommunication.updateInformation()"""),("""DELETE""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/information/$id<[^/]+>""","""controllers.DistrictCommunication.deleteInformation(id:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/$idDistrict<[^/]+>""","""controllers.DistrictCommunication.getAllInformations(idDistrict:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/$id<[^/]+>""","""controllers.DistrictCommunication.getInformation(id:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e match {
+
+// @LINE:36
+private[this] lazy val controllers_Assets_at20 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+"""))))
+        
+def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate/district/""","""controllers.Application.authenticateDistrict()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate/admin/""","""controllers.Application.authenticateAdmin()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/report/help""","""controllers.UsersReport.reportHelp()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/report/danger""","""controllers.UsersReport.reportDanger()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/report/details""","""controllers.UsersReport.reportDetails()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/report/photo""","""controllers.UsersReport.reportPhoto()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/info/$lat<[^/]+>/$lon<[^/]+>""","""controllers.UsersReport.getInfo(lat:Double, lon:Double)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """client/news""","""controllers.UserInformationRequest.getInfoFeed(lat:Long, lon:Long, oldest:Long)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/""","""controllers.AdminCommunication.createDistrict()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/""","""controllers.AdminCommunication.modifyDistrict()"""),("""DELETE""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/$id<[^/]+>""","""controllers.AdminCommunication.deleteDistrict(id:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/""","""controllers.AdminCommunication.listAllDistricts()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """admin/district/$id<[^/]+>""","""controllers.AdminCommunication.getDistrict(id:Long)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/information/""","""controllers.DistrictCommunication.postInformation()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/information/""","""controllers.DistrictCommunication.updateInformation()"""),("""DELETE""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/information/$id<[^/]+>""","""controllers.DistrictCommunication.deleteInformation(id:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/$idDistrict<[^/]+>""","""controllers.DistrictCommunication.getAllInformations(idDistrict:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/$id<[^/]+>""","""controllers.DistrictCommunication.getInformation(id:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """district/websocket/$id<[^/]+>""","""controllers.DistrictCommunication.initWebSocket(id:Long)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]] 
 }}
@@ -173,8 +177,8 @@ case controllers_UsersReport_reportPhoto6(params) => {
 
 // @LINE:15
 case controllers_UsersReport_getInfo7(params) => {
-   call(params.fromQuery[Long]("lat", None), params.fromQuery[Long]("lon", None)) { (lat, lon) =>
-        invokeHandler(controllers.UsersReport.getInfo(lat, lon), HandlerDef(this, "controllers.UsersReport", "getInfo", Seq(classOf[Long], classOf[Long]),"GET", """""", Routes.prefix + """client/info/"""))
+   call(params.fromPath[Double]("lat", None), params.fromPath[Double]("lon", None)) { (lat, lon) =>
+        invokeHandler(controllers.UsersReport.getInfo(lat, lon), HandlerDef(this, "controllers.UsersReport", "getInfo", Seq(classOf[Double], classOf[Double]),"GET", """""", Routes.prefix + """client/info/$lat<[^/]+>/$lon<[^/]+>"""))
    }
 }
         
@@ -267,8 +271,16 @@ case controllers_DistrictCommunication_getInformation18(params) => {
 }
         
 
-// @LINE:35
-case controllers_Assets_at19(params) => {
+// @LINE:33
+case controllers_DistrictCommunication_initWebSocket19(params) => {
+   call(params.fromPath[Long]("id", None)) { (id) =>
+        invokeHandler(controllers.DistrictCommunication.initWebSocket(id), HandlerDef(this, "controllers.DistrictCommunication", "initWebSocket", Seq(classOf[Long]),"GET", """""", Routes.prefix + """district/websocket/$id<[^/]+>"""))
+   }
+}
+        
+
+// @LINE:36
+case controllers_Assets_at20(params) => {
    call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
         invokeHandler(controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """ Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
    }

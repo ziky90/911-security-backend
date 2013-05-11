@@ -12,7 +12,7 @@ POST    /client/report/help											controllers.UsersReport.reportHelp()
 POST    /client/report/danger										controllers.UsersReport.reportDanger()
 POST    /client/report/details										controllers.UsersReport.reportDetails()
 POST	/client/report/photo										controllers.UsersReport.reportPhoto()
-GET		/client/info/												controllers.UsersReport.getInfo(lat: Long, lon: Long)
+GET		/client/info/:lat/:lon										controllers.UsersReport.getInfo(lat: Double, lon: Double)
 
 # loading info requests from client
 GET 	/client/news												controllers.UserInformationRequest.getInfoFeed(lat: Long, lon: Long, oldest: Long)
@@ -30,6 +30,7 @@ PUT		/district/information/										controllers.DistrictCommunication.updateInf
 DELETE 	/district/information/:id									controllers.DistrictCommunication.deleteInformation(id: Long)
 GET		/district/:idDistrict										controllers.DistrictCommunication.getAllInformations(idDistrict: Long)
 GET		/district/:id												controllers.DistrictCommunication.getInformation(id: Long)
+GET		/district/websocket/:id										controllers.DistrictCommunication.initWebSocket(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

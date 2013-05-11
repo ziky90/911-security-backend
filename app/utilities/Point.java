@@ -2,27 +2,32 @@ package utilities;
 
 public class Point {
 
-	private long longtitude;
-	private long latiude;
+	private double longtitude;
+	private double latiude;
 	
-	public Point(long longtitude, long latiude) {
+	public Point(double longtitude, double latiude) {
 		super();
 		this.longtitude = longtitude;
 		this.latiude = latiude;
 	}
-	
-	public long getLongtitude() {
+
+	public double getLongtitude() {
 		return longtitude;
 	}
-	public void setLongtitude(long longtitude) {
+
+	public void setLongtitude(double longtitude) {
 		this.longtitude = longtitude;
 	}
-	public long getLatiude() {
+
+	public double getLatiude() {
 		return latiude;
 	}
-	public void setLatitude(long latiude) {
+
+	public void setLatiude(double latiude) {
 		this.latiude = latiude;
 	}
+	
+	
 	
 	
 	

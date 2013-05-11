@@ -53,6 +53,7 @@
   <classpathentry path="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.hibernatespatial/hibernate-spatial/jars/hibernate-spatial-1.1.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/zikesjan/play-2.1.0/framework/../repository/cache/com.vividsolutions/jts/jars/jts-1.11.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/zikesjan/play-2.1.0/framework/../repository/cache/xerces/xercesImpl/jars/xercesImpl-2.4.0.jar" kind="lib"></classpathentry>
+  <classpathentry path="/Users/zikesjan/play-2.1.0/framework/../repository/cache/org.mindrot/jbcrypt/jars/jbcrypt-0.3m.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/zikesjan/play-2.1.0/repository/local/play/play-java_2.10/2.1.0/jars/play-java_2.10.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/zikesjan/play-2.1.0/repository/local/org.yaml/snakeyaml/1.10/bundles/snakeyaml.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/zikesjan/play-2.1.0/repository/local/org.hibernate/hibernate-validator/4.3.0.Final/jars/hibernate-validator.jar" kind="lib"></classpathentry>

@@ -1,6 +1,6 @@
 // @SOURCE:/Users/zikesjan/Documents/workspace/911security-backend/conf/routes
-// @HASH:2fd3ae5f04081051d0d87dc1ee6de9dc0869b46b
-// @DATE:Thu May 09 19:13:35 CEST 2013
+// @HASH:25fb722fb0429fe179646ff4c360ddf8064378a8
+// @DATE:Sat May 11 09:40:58 CEST 2013
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,7 +13,8 @@ import play.libs.F
 import Router.queryString
 
 
-// @LINE:35
+// @LINE:36
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -35,11 +36,11 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:35
+// @LINE:36
 class ReverseAssets {
     
 
-// @LINE:35
+// @LINE:36
 def at(file:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
 }
@@ -48,6 +49,7 @@ def at(file:String): Call = {
 }
                           
 
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -77,6 +79,12 @@ def postInformation(): Call = {
 // @LINE:31
 def getAllInformations(idDistrict:Long): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "district/" + implicitly[PathBindable[Long]].unbind("idDistrict", idDistrict))
+}
+                                                
+
+// @LINE:33
+def initWebSocket(id:Long): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "district/websocket/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                 
 
@@ -203,8 +211,8 @@ def reportHelp(): Call = {
                                                 
 
 // @LINE:15
-def getInfo(lat:Long, lon:Long): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "client/info/" + queryString(List(Some(implicitly[QueryStringBindable[Long]].unbind("lat", lat)), Some(implicitly[QueryStringBindable[Long]].unbind("lon", lon)))))
+def getInfo(lat:Double, lon:Double): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "client/info/" + implicitly[PathBindable[Double]].unbind("lat", lat) + "/" + implicitly[PathBindable[Double]].unbind("lon", lon))
 }
                                                 
     
@@ -214,7 +222,8 @@ def getInfo(lat:Long, lon:Long): Call = {
                   
 
 
-// @LINE:35
+// @LINE:36
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -236,11 +245,11 @@ def getInfo(lat:Long, lon:Long): Call = {
 // @LINE:6
 package controllers.javascript {
 
-// @LINE:35
+// @LINE:36
 class ReverseAssets {
     
 
-// @LINE:35
+// @LINE:36
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -254,6 +263,7 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -301,6 +311,17 @@ def getAllInformations : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function(idDistrict) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("idDistrict", idDistrict)})
+      }
+   """
+)
+                        
+
+// @LINE:33
+def initWebSocket : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.DistrictCommunication.initWebSocket",
+   """
+      function(id) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/websocket/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
       }
    """
 )
@@ -503,7 +524,7 @@ def getInfo : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.UsersReport.getInfo",
    """
       function(lat,lon) {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "client/info/" + _qS([(""" + implicitly[QueryStringBindable[Long]].javascriptUnbind + """)("lat", lat), (""" + implicitly[QueryStringBindable[Long]].javascriptUnbind + """)("lon", lon)])})
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "client/info/" + (""" + implicitly[PathBindable[Double]].javascriptUnbind + """)("lat", lat) + "/" + (""" + implicitly[PathBindable[Double]].javascriptUnbind + """)("lon", lon)})
       }
    """
 )
@@ -515,7 +536,8 @@ def getInfo : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:35
+// @LINE:36
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -537,11 +559,11 @@ def getInfo : JavascriptReverseRoute = JavascriptReverseRoute(
 // @LINE:6
 package controllers.ref {
 
-// @LINE:35
+// @LINE:36
 class ReverseAssets {
     
 
-// @LINE:35
+// @LINE:36
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -550,6 +572,7 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -579,6 +602,12 @@ def postInformation(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:31
 def getAllInformations(idDistrict:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.DistrictCommunication.getAllInformations(idDistrict), HandlerDef(this, "controllers.DistrictCommunication", "getAllInformations", Seq(classOf[Long]), "GET", """""", _prefix + """district/$idDistrict<[^/]+>""")
+)
+                      
+
+// @LINE:33
+def initWebSocket(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.DistrictCommunication.initWebSocket(id), HandlerDef(this, "controllers.DistrictCommunication", "initWebSocket", Seq(classOf[Long]), "GET", """""", _prefix + """district/websocket/$id<[^/]+>""")
 )
                       
 
@@ -705,8 +734,8 @@ def reportHelp(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
                       
 
 // @LINE:15
-def getInfo(lat:Long, lon:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.UsersReport.getInfo(lat, lon), HandlerDef(this, "controllers.UsersReport", "getInfo", Seq(classOf[Long], classOf[Long]), "GET", """""", _prefix + """client/info/""")
+def getInfo(lat:Double, lon:Double): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.UsersReport.getInfo(lat, lon), HandlerDef(this, "controllers.UsersReport", "getInfo", Seq(classOf[Double], classOf[Double]), "GET", """""", _prefix + """client/info/$lat<[^/]+>/$lon<[^/]+>""")
 )
                       
     

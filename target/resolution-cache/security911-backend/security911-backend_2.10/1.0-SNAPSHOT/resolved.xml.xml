@@ -4,7 +4,7 @@
 		module="security911-backend_2.10"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20130509191335"
+		publication="20130511094058"
 	>
 		<description>
 		security911-backend
@@ -38,6 +38,7 @@
 		<dependency org="org.postgis" name="postgis-jdbc" rev="1.3.3" conf="compile->default(compile)"/>
 		<dependency org="org.hibernate" name="hibernate-entitymanager" rev="3.6.9.Final" conf="compile->default(compile)"/>
 		<dependency org="org.hibernatespatial" name="hibernate-spatial-postgis" rev="1.1" conf="compile->default(compile)"/>
+		<dependency org="org.mindrot" name="jbcrypt" rev="0.3m" conf="compile->default(compile)"/>
 		<dependency org="play" name="play-java_2.10" rev="2.1.0" conf="compile->default(compile)"/>
 		<dependency org="play" name="play-java-jdbc_2.10" rev="2.1.0" conf="compile->default(compile)"/>
 		<dependency org="play" name="play-java-jpa_2.10" rev="2.1.0" conf="compile->default(compile)"/>

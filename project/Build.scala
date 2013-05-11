@@ -16,6 +16,8 @@ object ApplicationBuild extends Build {
       "org.hibernate" % "hibernate-entitymanager" % "3.6.9.Final",
       "org.hibernatespatial" % "hibernate-spatial-postgis" % "1.1",
       
+      "org.mindrot" % "jbcrypt" % "0.3m",
+      
       //"org.eclipse.persistence" % "javax.persistence" % "2.0.0",
     javaCore,
     javaJdbc,

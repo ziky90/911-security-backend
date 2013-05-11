@@ -16,7 +16,7 @@ public class Convertor {
 	 * @param lon
 	 * @return
 	 */
-	public static String pointFromCoordinates(long lat, long lon){
+	public static String pointFromCoordinates(double lat, double lon){
 		StringBuilder builder = new StringBuilder();
 		builder.append("POINT (").append(lon).append(" ").append(lat).append(")");
 		return builder.toString();
