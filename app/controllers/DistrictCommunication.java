@@ -151,7 +151,7 @@ public class DistrictCommunication extends Controller {
 	
 	public static WebSocket<JsonNode> initWebSocket(final long id) {
 
-		if (Secured.isOwnerOf(id)) {
+		
 
 			return new WebSocket<JsonNode>() {
 
@@ -192,8 +192,6 @@ public class DistrictCommunication extends Controller {
 
 			};
 
-		}else{
-			return null;
-		}
+		
 	}
 }
