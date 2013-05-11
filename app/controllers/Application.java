@@ -53,6 +53,6 @@ public class Application extends Controller {
 			return ok("logged in");
 		}
 		
-		return badRequest("wrong password");		
+		return forbidden("wrong password");		
 	}
 }
