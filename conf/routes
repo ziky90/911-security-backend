@@ -31,6 +31,8 @@ DELETE 	/district/information/:id									controllers.DistrictCommunication.dele
 GET		/district/:idDistrict										controllers.DistrictCommunication.getAllInformations(idDistrict: Long)
 GET		/district/:id												controllers.DistrictCommunication.getInformation(id: Long)
 GET		/district/websocket/										controllers.DistrictCommunication.initWebSocket()
+GET		/district/ban/:id											controllers.DistrictCommunication.banUser(id: Long)
+GET		/district/archive/:id										controllers.DistrictCommunication.archiveCrime(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

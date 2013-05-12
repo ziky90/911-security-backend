@@ -23,7 +23,7 @@ public class WebSocketPool {
 		//if(DistrictOperations.isOwnerTransact(id, password)){
 			activeSockets.put(id, out);
 			ObjectNode on = Json.newObject();
-			on.put("message", "sucessfuly launched");
+			on.put("message", "Application successfuly launche and connected!!!");
 			out.write(on);
 		/*}else{
 			ObjectNode on = Json.newObject();

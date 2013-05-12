@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import model.Crime;
 import model.District;
 import model.Info;
 
@@ -150,6 +151,8 @@ public class DistrictCommunication extends Controller {
 		}
 	}
 
+	
+	
 	public static WebSocket<JsonNode> initWebSocket() {
 
 		return new WebSocket<JsonNode>() {
@@ -172,35 +175,30 @@ public class DistrictCommunication extends Controller {
 												
 					}
 				});
-				
-				
-				
-				/*
-				 * // TODO store somewhere the socket and implement writing //
-				 * from the clients
-				 * 
-				 * // For each event received on the socket, in.onMessage(new
-				 * Callback<JsonNode>() { public void invoke(JsonNode event) {
-				 * 
-				 * // Log events to the console // TODO implement here all the
-				 * possible messages // from the client
-				 * System.out.println(event);
-				 * 
-				 * } });
-				 * 
-				 * // When the socket is closed. in.onClose(new Callback0() {
-				 * public void invoke() {
-				 * 
-				 * System.out.println("Disconnected");
-				 * 
-				 * } });
-				 * 
-				 * // Send a single 'Hello!' message ObjectNode on =
-				 * Json.newObject(); on.put("greeting", "hello"); out.write(on);
-				 */
 			}
 
 		};
 
+	}
+	
+	
+	@Transactional
+	public static Result banUser(long id){
+		Query query = JPA.em().createQuery("SELECT c FROM  Crime c WHERE c.id = :id");
+		Crime c = (Crime) query.setParameter("id", id).getSingleResult();
+		c.getClient().setAllowed(false);
+		c.setActual(false);
+		JPA.em().persist(c);
+		return ok();		
+	}
+	
+	
+	@Transactional
+	public static Result archiveCrime(long id){
+		Query query = JPA.em().createQuery("SELECT c FROM  Crime c WHERE c.id = :id");
+		Crime c = (Crime) query.setParameter("id", id).getSingleResult();
+		c.setActual(false);
+		JPA.em().persist(c);
+		return ok();
 	}
 }

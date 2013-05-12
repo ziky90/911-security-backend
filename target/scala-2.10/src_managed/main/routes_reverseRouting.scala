@@ -1,6 +1,6 @@
 // @SOURCE:/Users/zikesjan/Documents/workspace/911security-backend/conf/routes
-// @HASH:0b84b6f47246c415bd7560207f37c6672def0602
-// @DATE:Sat May 11 22:28:42 CEST 2013
+// @HASH:8a69bd762f1e6640d0a64a868c3dccf2d68a179a
+// @DATE:Sun May 12 15:36:41 CEST 2013
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,7 +13,9 @@ import play.libs.F
 import Router.queryString
 
 
-// @LINE:36
+// @LINE:38
+// @LINE:35
+// @LINE:34
 // @LINE:33
 // @LINE:32
 // @LINE:31
@@ -36,11 +38,11 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:36
+// @LINE:38
 class ReverseAssets {
     
 
-// @LINE:36
+// @LINE:38
 def at(file:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
 }
@@ -49,6 +51,8 @@ def at(file:String): Call = {
 }
                           
 
+// @LINE:35
+// @LINE:34
 // @LINE:33
 // @LINE:32
 // @LINE:31
@@ -61,6 +65,12 @@ class ReverseDistrictCommunication {
 // @LINE:33
 def initWebSocket(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "district/websocket/")
+}
+                                                
+
+// @LINE:34
+def banUser(id:Long): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "district/ban/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                 
 
@@ -85,6 +95,12 @@ def postInformation(): Call = {
 // @LINE:31
 def getAllInformations(idDistrict:Long): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "district/" + implicitly[PathBindable[Long]].unbind("idDistrict", idDistrict))
+}
+                                                
+
+// @LINE:35
+def archiveCrime(id:Long): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "district/archive/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                 
 
@@ -222,7 +238,9 @@ def getInfo(lat:Double, lon:Double): Call = {
                   
 
 
-// @LINE:36
+// @LINE:38
+// @LINE:35
+// @LINE:34
 // @LINE:33
 // @LINE:32
 // @LINE:31
@@ -245,11 +263,11 @@ def getInfo(lat:Double, lon:Double): Call = {
 // @LINE:6
 package controllers.javascript {
 
-// @LINE:36
+// @LINE:38
 class ReverseAssets {
     
 
-// @LINE:36
+// @LINE:38
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -263,6 +281,8 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:35
+// @LINE:34
 // @LINE:33
 // @LINE:32
 // @LINE:31
@@ -278,6 +298,17 @@ def initWebSocket : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function() {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/websocket/"})
+      }
+   """
+)
+                        
+
+// @LINE:34
+def banUser : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.DistrictCommunication.banUser",
+   """
+      function(id) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/ban/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
       }
    """
 )
@@ -322,6 +353,17 @@ def getAllInformations : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function(idDistrict) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("idDistrict", idDistrict)})
+      }
+   """
+)
+                        
+
+// @LINE:35
+def archiveCrime : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.DistrictCommunication.archiveCrime",
+   """
+      function(id) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/archive/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
       }
    """
 )
@@ -536,7 +578,9 @@ def getInfo : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:36
+// @LINE:38
+// @LINE:35
+// @LINE:34
 // @LINE:33
 // @LINE:32
 // @LINE:31
@@ -559,11 +603,11 @@ def getInfo : JavascriptReverseRoute = JavascriptReverseRoute(
 // @LINE:6
 package controllers.ref {
 
-// @LINE:36
+// @LINE:38
 class ReverseAssets {
     
 
-// @LINE:36
+// @LINE:38
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -572,6 +616,8 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
+// @LINE:35
+// @LINE:34
 // @LINE:33
 // @LINE:32
 // @LINE:31
@@ -584,6 +630,12 @@ class ReverseDistrictCommunication {
 // @LINE:33
 def initWebSocket(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.DistrictCommunication.initWebSocket(), HandlerDef(this, "controllers.DistrictCommunication", "initWebSocket", Seq(), "GET", """""", _prefix + """district/websocket/""")
+)
+                      
+
+// @LINE:34
+def banUser(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.DistrictCommunication.banUser(id), HandlerDef(this, "controllers.DistrictCommunication", "banUser", Seq(classOf[Long]), "GET", """""", _prefix + """district/ban/$id<[^/]+>""")
 )
                       
 
@@ -608,6 +660,12 @@ def postInformation(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:31
 def getAllInformations(idDistrict:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.DistrictCommunication.getAllInformations(idDistrict), HandlerDef(this, "controllers.DistrictCommunication", "getAllInformations", Seq(classOf[Long]), "GET", """""", _prefix + """district/$idDistrict<[^/]+>""")
+)
+                      
+
+// @LINE:35
+def archiveCrime(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.DistrictCommunication.archiveCrime(id), HandlerDef(this, "controllers.DistrictCommunication", "archiveCrime", Seq(classOf[Long]), "GET", """""", _prefix + """district/archive/$id<[^/]+>""")
 )
                       
 

@@ -77,10 +77,10 @@ public class UsersReport extends Controller {
 				crime.setFlag("help");
 				crime.setActual(true);
 				
-				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createHelpObjectNode(json.findPath("lat").asDouble(), json.findPath("lon").asDouble()));
-
 				JPA.em().persist(crime);
 
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createHelpObjectNode(crime.getId(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble()));
+				
 				return ok("result help");
 			} else {
 				return forbidden();
@@ -131,11 +131,11 @@ public class UsersReport extends Controller {
 				crime.setFlag("danger");
 				crime.setActual(true);
 				
-				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDangerObjectNode(json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
-						.getTextValue()));
-
 				JPA.em().persist(crime);
 
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDangerObjectNode(crime.getId(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
+						.getTextValue()));
+				
 				return ok("result danger");
 			} else {
 				return forbidden();
@@ -186,10 +186,10 @@ public class UsersReport extends Controller {
 				crime.setFlag("details");
 				crime.setActual(true);
 				
-				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDetailsObjectNode(json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
-						.getTextValue()));
-				
 				JPA.em().persist(crime);
+				
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDetailsObjectNode(crime.getId(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
+						.getTextValue()));
 
 				return ok("result details");
 			} else {
@@ -248,10 +248,10 @@ public class UsersReport extends Controller {
 
 				crime.setFlag("photo");
 				crime.setActual(true);
-				
-				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createPhotoObjectNode(json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("photo").asText()));
 
 				JPA.em().persist(crime);
+				
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createPhotoObjectNode(crime.getId(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("photo").asText()));
 
 				return ok("result photo");
 			} else {

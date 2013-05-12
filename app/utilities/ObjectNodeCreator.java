@@ -6,28 +6,28 @@ import play.libs.Json;
 
 public class ObjectNodeCreator {
 
-	public static ObjectNode createHelpObjectNode(double lat, double lon){
+	public static ObjectNode createHelpObjectNode(long id, double lat, double lon){
 		ObjectNode on = Json.newObject();
+		on.put("id", id);
 		on.put("lat", lat);
 		on.put("lon", lon);
-		on.put("description", "");
-		on.put("photo", "");
 		on.put("flag", "help");
 		return on;
 	}
 	
-	public static ObjectNode createDangerObjectNode(double lat, double lon, String text){
+	public static ObjectNode createDangerObjectNode(long id, double lat, double lon, String text){
 		ObjectNode on = Json.newObject();
+		on.put("id", id);
 		on.put("lat", lat);
 		on.put("lon", lon);
 		on.put("description", text);
-		on.put("photo", "");
 		on.put("flag", "danger");
 		return on;
 	}
 	
-	public static ObjectNode createDetailsObjectNode(double lat, double lon, String text){
+	public static ObjectNode createDetailsObjectNode(long id, double lat, double lon, String text){
 		ObjectNode on = Json.newObject();
+		on.put("id", id);
 		on.put("lat", lat);
 		on.put("lon", lon);
 		on.put("description", text);
@@ -36,11 +36,11 @@ public class ObjectNodeCreator {
 	}
 	
 	
-	public static ObjectNode createPhotoObjectNode(double lat, double lon, String photo){
+	public static ObjectNode createPhotoObjectNode(long id, double lat, double lon, String photo){
 		ObjectNode on = Json.newObject();
+		on.put("id", id);
 		on.put("lat", lat);
 		on.put("lon", lon);
-		on.put("description", "");
 		on.put("photo", photo);
 		on.put("flag", "photo");
 		return on;
