@@ -169,10 +169,13 @@ public class DistrictCommunication extends Controller {
 							long id = event.get("id").asLong();
 							String password = event.get("password").asText();
 							WebSocketPool.connect(id, password, in, out);
-						}else{
-							
-						}
-												
+						}else if(event.get("status").asText().equals("ban")){
+							long id = event.get("id").asLong();
+							WebSocketPool.ban(id, out);
+						}else if(event.get("status").asText().equals("solve")){
+							long id = event.get("id").asLong();
+							WebSocketPool.solve(id, out);
+						}												
 					}
 				});
 			}
@@ -181,24 +184,4 @@ public class DistrictCommunication extends Controller {
 
 	}
 	
-	
-	@Transactional
-	public static Result banUser(long id){
-		Query query = JPA.em().createQuery("SELECT c FROM  Crime c WHERE c.id = :id");
-		Crime c = (Crime) query.setParameter("id", id).getSingleResult();
-		c.getClient().setAllowed(false);
-		c.setActual(false);
-		JPA.em().persist(c);
-		return ok();		
-	}
-	
-	
-	@Transactional
-	public static Result archiveCrime(long id){
-		Query query = JPA.em().createQuery("SELECT c FROM  Crime c WHERE c.id = :id");
-		Crime c = (Crime) query.setParameter("id", id).getSingleResult();
-		c.setActual(false);
-		JPA.em().persist(c);
-		return ok();
-	}
 }

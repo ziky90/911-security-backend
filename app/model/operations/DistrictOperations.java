@@ -1,6 +1,8 @@
 package model.operations;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -30,13 +32,11 @@ public class DistrictOperations {
 		
 	}
 	
+	
 	public static boolean isOwnerTransact(long district, String password){
-		//EntityTransaction t = JPA.em().getTransaction();
-		//t.begin();
+		
 		Query query = JPA.em().createQuery("SELECT d FROM  District d WHERE d.id = :districtId");
-		System.out.println("p0");
 		District d = (District) query.setParameter("districtId", district).getSingleResult();
-		//t.commit();
 		if(d == null){
 			return false;
 		}
