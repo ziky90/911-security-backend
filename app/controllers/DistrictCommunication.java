@@ -4,13 +4,11 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import model.Crime;
 import model.District;
 import model.Info;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
-
 
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;

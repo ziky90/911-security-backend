@@ -12,6 +12,8 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
@@ -30,15 +32,47 @@ public class WebSocketPool {
 		
 				
 		//if(DistrictOperations.isOwnerTransact(id, password)){
+		boolean result = false;
+		HttpClient httpclient = new DefaultHttpClient();
+		try {
+
+			HttpPut put = new HttpPut(new URI("http://911backend-911backend.rhcloud.com/district/auth/"));
+			put.setHeader("Content-type", "application/json");
+			StringEntity params = new StringEntity("{\"id\":"+id+",\"password\":\""+password+"\"}");
+			put.setEntity(params);
+
+			HttpResponse response = httpclient.execute(put);
+
+			StatusLine statusLine = response.getStatusLine();
+
+			//Log.v(statusLine.toString(), statusLine.toString());
+			
+			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+				result = true;
+			}
+
+		} catch (ClientProtocolException e) {
+			result = false;
+			e.printStackTrace();
+		} catch (IOException e) {
+			result = false;
+			e.printStackTrace();
+		} catch (URISyntaxException e1) {
+			result = false;
+			e1.printStackTrace();
+		}
+		
+		if(result){
 			activeSockets.put(id, out);
 			ObjectNode on = Json.newObject();
 			on.put("message", "Application successfuly launched and connected!!!");
 			out.write(on);
-		/*}else{
+		}else{
 			ObjectNode on = Json.newObject();
 			on.put("message", "your id or password is incorrect");
 			out.write(on);
-		}*/
+			out.close();
+		}
 		
 	}
 	
