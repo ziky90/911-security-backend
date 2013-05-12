@@ -1,13 +1,11 @@
 package model.operations;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import model.District;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import model.District;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 
@@ -37,6 +35,7 @@ public class DistrictOperations {
 		
 		Query query = JPA.em().createQuery("SELECT d FROM  District d WHERE d.id = :districtId");
 		District d = (District) query.setParameter("districtId", district).getSingleResult();
+		
 		if(d == null){
 			return false;
 		}

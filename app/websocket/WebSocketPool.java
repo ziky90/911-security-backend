@@ -31,12 +31,11 @@ public class WebSocketPool {
 	public static void connect(final long id, final String password,  In<JsonNode> in, Out<JsonNode> out){
 		
 				
-		//if(DistrictOperations.isOwnerTransact(id, password)){
 		boolean result = false;
 		HttpClient httpclient = new DefaultHttpClient();
 		try {
 
-			HttpPut put = new HttpPut(new URI("http://911backend-911backend.rhcloud.com/district/auth/"));
+			HttpPut put = new HttpPut(new URI("http://911backend-911backend.rhcloud.com/district/verify/"));
 			put.setHeader("Content-type", "application/json");
 			StringEntity params = new StringEntity("{\"id\":"+id+",\"password\":\""+password+"\"}");
 			put.setEntity(params);
@@ -44,8 +43,6 @@ public class WebSocketPool {
 			HttpResponse response = httpclient.execute(put);
 
 			StatusLine statusLine = response.getStatusLine();
-
-			//Log.v(statusLine.toString(), statusLine.toString());
 			
 			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
 				result = true;
