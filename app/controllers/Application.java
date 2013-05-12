@@ -1,5 +1,6 @@
 package controllers;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import model.Crime;
@@ -62,9 +63,14 @@ public class Application extends Controller {
 	@Transactional
 	public static Result archiveCrime(long id){
 		Query query = JPA.em().createQuery("SELECT c FROM  Crime c WHERE c.id = :id");
-		Crime c = (Crime) query.setParameter("id", id).getSingleResult();
-		c.setActual(false);
-		JPA.em().persist(c);
+		try{
+			Crime c = (Crime) query.setParameter("id", id).getSingleResult();
+			c.setActual(false);
+			JPA.em().persist(c);
+		}catch(NoResultException e){
+			return badRequest("crime not found");
+		}
+		
 		return ok("archived");
 	}
 }

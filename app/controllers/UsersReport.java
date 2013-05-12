@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import model.Client;
 import model.Crime;
 import model.District;
 import model.Info;
@@ -40,7 +41,8 @@ public class UsersReport extends Controller {
 		if (json == null) {
 			return badRequest("expecting json data");
 		} else {
-			if (UserOperations.isAllowed(json.findPath("uid").asText())) {
+			Client c = UserOperations.getClient(json.findPath("uid").asText());
+			if (c.getAllowed()) {
 				Crime crime = new Crime();
 
 				String wktPoint = Convertor.pointFromCoordinates(
@@ -74,12 +76,13 @@ public class UsersReport extends Controller {
 					return notFound("district not found");
 				}
 
+				crime.setClient(c);
 				crime.setFlag("help");
 				crime.setActual(true);
 				
 				JPA.em().persist(crime);
 
-				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createHelpObjectNode(crime.getId(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble()));
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createHelpObjectNode(crime.getId(), c.getUid(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble()));
 				
 				return ok("result help");
 			} else {
@@ -95,7 +98,8 @@ public class UsersReport extends Controller {
 		if (json == null) {
 			return badRequest("expecting json data");
 		} else {
-			if (UserOperations.isAllowed(json.findPath("uid").asText())) {
+			Client c = UserOperations.getClient(json.findPath("uid").asText());
+			if (c.getAllowed()) {
 				Crime crime = new Crime();
 
 				String wktPoint = Convertor.pointFromCoordinates(
@@ -128,12 +132,13 @@ public class UsersReport extends Controller {
 					}
 				}
 
+				crime.setClient(c);
 				crime.setFlag("danger");
 				crime.setActual(true);
 				
 				JPA.em().persist(crime);
 
-				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDangerObjectNode(crime.getId(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDangerObjectNode(crime.getId(), c.getUid(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
 						.getTextValue()));
 				
 				return ok("result danger");
@@ -150,7 +155,8 @@ public class UsersReport extends Controller {
 		if (json == null) {
 			return badRequest("expecting json data");
 		} else {
-			if (UserOperations.isAllowed(json.findPath("uid").asText())) {
+			Client c = UserOperations.getClient(json.findPath("uid").asText());
+			if (c.getAllowed()) {
 				Crime crime = new Crime();
 
 				String wktPoint = Convertor.pointFromCoordinates(
@@ -183,12 +189,13 @@ public class UsersReport extends Controller {
 					}
 				}
 
+				crime.setClient(c);
 				crime.setFlag("details");
 				crime.setActual(true);
 				
 				JPA.em().persist(crime);
 				
-				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDetailsObjectNode(crime.getId(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createDetailsObjectNode(crime.getId(), c.getUid(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("description")
 						.getTextValue()));
 
 				return ok("result details");
@@ -205,7 +212,8 @@ public class UsersReport extends Controller {
 		if (json == null) {
 			return badRequest("expecting json data");
 		} else {
-			if (UserOperations.isAllowed(json.findPath("uid").asText())) {
+			Client c = UserOperations.getClient(json.findPath("uid").asText());
+			if (c.getAllowed()) {
 				Crime crime = new Crime();
 
 				String wktPoint = Convertor.pointFromCoordinates(
@@ -245,13 +253,14 @@ public class UsersReport extends Controller {
 						break;
 					}
 				}
-
+				
+				crime.setClient(c);
 				crime.setFlag("photo");
 				crime.setActual(true);
 
 				JPA.em().persist(crime);
 				
-				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createPhotoObjectNode(crime.getId(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("photo").asText()));
+				WebSocketPool.writeToWebSocket(crime.getDistrict().getId(), ObjectNodeCreator.createPhotoObjectNode(crime.getId(), c.getUid(), json.findPath("lat").asDouble(), json.findPath("lon").asDouble(), json.findPath("photo").asText()));
 
 				return ok("result photo");
 			} else {

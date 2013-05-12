@@ -12,7 +12,7 @@ public class UserOperations {
 	
 	
 	@Transactional
-	public static boolean isAllowed(String uid){
+	public static Client getClient(String uid){
 		Query query = JPA.em().createQuery("SELECT c FROM  Client c WHERE c.uid = :uid");
 		Client c = null;
 		try{
@@ -23,11 +23,8 @@ public class UserOperations {
 			c.setAllowed(true);
 			JPA.em().persist(c);
 		}
-		if(c == null){
-			return false;
-		}
 		
-		return c.getAllowed();		
+		return c;		
 		
 	}
 	
