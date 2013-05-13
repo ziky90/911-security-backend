@@ -18,7 +18,6 @@ import play.mvc.Result;
 public class Application extends Controller {
   
 	public static Result index() {
-    	//TODO return admin login site in here
         return ok("Got request " + request() + "!");
     }
 	
@@ -74,7 +73,7 @@ public class Application extends Controller {
 		return ok("archived");
 	}
 	
-	@Transactional(readOnly=true)
+	/*@Transactional(readOnly=true)
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result verifyDistrict(){
 		JsonNode json = request().body().asJson();
@@ -85,6 +84,6 @@ public class Application extends Controller {
 		}
 		
 		return badRequest("wrong password");
-	}
+	}*/
 	
 }

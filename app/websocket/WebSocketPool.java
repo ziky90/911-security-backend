@@ -6,6 +6,8 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.operations.DistrictOperations;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
@@ -18,10 +20,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 
+import play.db.jpa.JPA;
+import play.libs.F.Function0;
 import play.libs.Json;
 import play.mvc.WebSocket.In;
 import play.mvc.WebSocket.Out;
-
 
 public class WebSocketPool {
 
@@ -31,7 +34,7 @@ public class WebSocketPool {
 	public static void connect(final long id, final String password,  In<JsonNode> in, Out<JsonNode> out){
 		
 				
-		boolean result = false;
+		/*boolean result = false;
 		HttpClient httpclient = new DefaultHttpClient();
 		try {
 
@@ -57,7 +60,22 @@ public class WebSocketPool {
 		} catch (URISyntaxException e1) {
 			result = false;
 			e1.printStackTrace();
+		}*/
+		
+		
+		
+		boolean result = false;
+		try {
+			result = JPA.withTransaction(new Function0<Boolean>(){
+			    public Boolean apply() throws Throwable{
+			        return DistrictOperations.isOwnerSecure(id, password);
+			    }
+			});
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		
 		if(result){
 			activeSockets.put(id, out);

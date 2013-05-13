@@ -15,7 +15,7 @@ public class Secured extends Security.Authenticator {
     
     @Override
     public Result onUnauthorized(Context ctx) {
-        return badRequest("you're not logged in");		//TODO put some redirection in here
+        return badRequest("you're not logged in");		
     }
     
     // Access rights

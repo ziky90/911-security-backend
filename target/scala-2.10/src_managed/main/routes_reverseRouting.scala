@@ -1,6 +1,6 @@
 // @SOURCE:/Users/zikesjan/Documents/workspace/911security-backend/conf/routes
-// @HASH:c15288fe0373f1f59de65d1ca8596674daa547bc
-// @DATE:Sun May 12 22:20:02 CEST 2013
+// @HASH:4737e6cdf9914e83b2311438f1397342974be398
+// @DATE:Mon May 13 16:01:52 CEST 2013
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,8 +13,7 @@ import play.libs.F
 import Router.queryString
 
 
-// @LINE:39
-// @LINE:36
+// @LINE:38
 // @LINE:35
 // @LINE:34
 // @LINE:33
@@ -39,11 +38,11 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:39
+// @LINE:38
 class ReverseAssets {
     
 
-// @LINE:39
+// @LINE:38
 def at(file:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
 }
@@ -113,7 +112,6 @@ def getInfoFeed(lat:Long, lon:Long, oldest:Long): Call = {
 }
                           
 
-// @LINE:36
 // @LINE:35
 // @LINE:34
 // @LINE:8
@@ -149,12 +147,6 @@ def index(): Call = {
 // @LINE:8
 def authenticateAdmin(): Call = {
    Call("PUT", _prefix + { _defaultPrefix } + "authenticate/admin/")
-}
-                                                
-
-// @LINE:36
-def verifyDistrict(): Call = {
-   Call("PUT", _prefix + { _defaultPrefix } + "district/verify/")
 }
                                                 
     
@@ -246,8 +238,7 @@ def getInfo(lat:Double, lon:Double): Call = {
                   
 
 
-// @LINE:39
-// @LINE:36
+// @LINE:38
 // @LINE:35
 // @LINE:34
 // @LINE:33
@@ -272,11 +263,11 @@ def getInfo(lat:Double, lon:Double): Call = {
 // @LINE:6
 package controllers.javascript {
 
-// @LINE:39
+// @LINE:38
 class ReverseAssets {
     
 
-// @LINE:39
+// @LINE:38
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -386,7 +377,6 @@ def getInfoFeed : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:36
 // @LINE:35
 // @LINE:34
 // @LINE:8
@@ -445,17 +435,6 @@ def authenticateAdmin : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function() {
       return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "authenticate/admin/"})
-      }
-   """
-)
-                        
-
-// @LINE:36
-def verifyDistrict : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.Application.verifyDistrict",
-   """
-      function() {
-      return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "district/verify/"})
       }
    """
 )
@@ -599,8 +578,7 @@ def getInfo : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:39
-// @LINE:36
+// @LINE:38
 // @LINE:35
 // @LINE:34
 // @LINE:33
@@ -625,11 +603,11 @@ def getInfo : JavascriptReverseRoute = JavascriptReverseRoute(
 // @LINE:6
 package controllers.ref {
 
-// @LINE:39
+// @LINE:38
 class ReverseAssets {
     
 
-// @LINE:39
+// @LINE:38
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -699,7 +677,6 @@ def getInfoFeed(lat:Long, lon:Long, oldest:Long): play.api.mvc.HandlerRef[_] = n
 }
                           
 
-// @LINE:36
 // @LINE:35
 // @LINE:34
 // @LINE:8
@@ -735,12 +712,6 @@ def index(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:8
 def authenticateAdmin(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.authenticateAdmin(), HandlerDef(this, "controllers.Application", "authenticateAdmin", Seq(), "PUT", """""", _prefix + """authenticate/admin/""")
-)
-                      
-
-// @LINE:36
-def verifyDistrict(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.verifyDistrict(), HandlerDef(this, "controllers.Application", "verifyDistrict", Seq(), "PUT", """""", _prefix + """district/verify/""")
 )
                       
     
