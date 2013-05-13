@@ -1,6 +1,6 @@
 // @SOURCE:/Users/zikesjan/Documents/workspace/911security-backend/conf/routes
-// @HASH:4737e6cdf9914e83b2311438f1397342974be398
-// @DATE:Mon May 13 16:01:52 CEST 2013
+// @HASH:0b84b6f47246c415bd7560207f37c6672def0602
+// @DATE:Mon May 13 17:00:37 CEST 2013
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,9 +13,7 @@ import play.libs.F
 import Router.queryString
 
 
-// @LINE:38
-// @LINE:35
-// @LINE:34
+// @LINE:36
 // @LINE:33
 // @LINE:32
 // @LINE:31
@@ -38,11 +36,11 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:38
+// @LINE:36
 class ReverseAssets {
     
 
-// @LINE:38
+// @LINE:36
 def at(file:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
 }
@@ -112,19 +110,11 @@ def getInfoFeed(lat:Long, lon:Long, oldest:Long): Call = {
 }
                           
 
-// @LINE:35
-// @LINE:34
 // @LINE:8
 // @LINE:7
 // @LINE:6
 class ReverseApplication {
     
-
-// @LINE:34
-def banUser(id:Long): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "district/ban/" + implicitly[PathBindable[Long]].unbind("id", id))
-}
-                                                
 
 // @LINE:7
 def authenticateDistrict(): Call = {
@@ -132,21 +122,15 @@ def authenticateDistrict(): Call = {
 }
                                                 
 
-// @LINE:35
-def archiveCrime(id:Long): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "district/archive/" + implicitly[PathBindable[Long]].unbind("id", id))
+// @LINE:8
+def authenticateAdmin(): Call = {
+   Call("PUT", _prefix + { _defaultPrefix } + "authenticate/admin/")
 }
                                                 
 
 // @LINE:6
 def index(): Call = {
    Call("GET", _prefix)
-}
-                                                
-
-// @LINE:8
-def authenticateAdmin(): Call = {
-   Call("PUT", _prefix + { _defaultPrefix } + "authenticate/admin/")
 }
                                                 
     
@@ -238,9 +222,7 @@ def getInfo(lat:Double, lon:Double): Call = {
                   
 
 
-// @LINE:38
-// @LINE:35
-// @LINE:34
+// @LINE:36
 // @LINE:33
 // @LINE:32
 // @LINE:31
@@ -263,11 +245,11 @@ def getInfo(lat:Double, lon:Double): Call = {
 // @LINE:6
 package controllers.javascript {
 
-// @LINE:38
+// @LINE:36
 class ReverseAssets {
     
 
-// @LINE:38
+// @LINE:36
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -377,24 +359,11 @@ def getInfoFeed : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:35
-// @LINE:34
 // @LINE:8
 // @LINE:7
 // @LINE:6
 class ReverseApplication {
     
-
-// @LINE:34
-def banUser : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.Application.banUser",
-   """
-      function(id) {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/ban/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
-      }
-   """
-)
-                        
 
 // @LINE:7
 def authenticateDistrict : JavascriptReverseRoute = JavascriptReverseRoute(
@@ -407,12 +376,12 @@ def authenticateDistrict : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:35
-def archiveCrime : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.Application.archiveCrime",
+// @LINE:8
+def authenticateAdmin : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.authenticateAdmin",
    """
-      function(id) {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "district/archive/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
+      function() {
+      return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "authenticate/admin/"})
       }
    """
 )
@@ -424,17 +393,6 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function() {
       return _wA({method:"GET", url:"""" + _prefix + """"})
-      }
-   """
-)
-                        
-
-// @LINE:8
-def authenticateAdmin : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.Application.authenticateAdmin",
-   """
-      function() {
-      return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "authenticate/admin/"})
       }
    """
 )
@@ -578,9 +536,7 @@ def getInfo : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:38
-// @LINE:35
-// @LINE:34
+// @LINE:36
 // @LINE:33
 // @LINE:32
 // @LINE:31
@@ -603,11 +559,11 @@ def getInfo : JavascriptReverseRoute = JavascriptReverseRoute(
 // @LINE:6
 package controllers.ref {
 
-// @LINE:38
+// @LINE:36
 class ReverseAssets {
     
 
-// @LINE:38
+// @LINE:36
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -677,19 +633,11 @@ def getInfoFeed(lat:Long, lon:Long, oldest:Long): play.api.mvc.HandlerRef[_] = n
 }
                           
 
-// @LINE:35
-// @LINE:34
 // @LINE:8
 // @LINE:7
 // @LINE:6
 class ReverseApplication {
     
-
-// @LINE:34
-def banUser(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.banUser(id), HandlerDef(this, "controllers.Application", "banUser", Seq(classOf[Long]), "GET", """""", _prefix + """district/ban/$id<[^/]+>""")
-)
-                      
 
 // @LINE:7
 def authenticateDistrict(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
@@ -697,21 +645,15 @@ def authenticateDistrict(): play.api.mvc.HandlerRef[_] = new play.api.mvc.Handle
 )
                       
 
-// @LINE:35
-def archiveCrime(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.archiveCrime(id), HandlerDef(this, "controllers.Application", "archiveCrime", Seq(classOf[Long]), "GET", """""", _prefix + """district/archive/$id<[^/]+>""")
+// @LINE:8
+def authenticateAdmin(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.authenticateAdmin(), HandlerDef(this, "controllers.Application", "authenticateAdmin", Seq(), "PUT", """""", _prefix + """authenticate/admin/""")
 )
                       
 
 // @LINE:6
 def index(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.index(), HandlerDef(this, "controllers.Application", "index", Seq(), "GET", """ Home page""", _prefix + """""")
-)
-                      
-
-// @LINE:8
-def authenticateAdmin(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.authenticateAdmin(), HandlerDef(this, "controllers.Application", "authenticateAdmin", Seq(), "PUT", """""", _prefix + """authenticate/admin/""")
 )
                       
     

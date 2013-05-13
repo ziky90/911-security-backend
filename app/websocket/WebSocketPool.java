@@ -6,6 +6,9 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.Query;
+
+import model.Crime;
 import model.operations.DistrictOperations;
 
 import org.apache.http.HttpResponse;
@@ -31,37 +34,7 @@ public class WebSocketPool {
 	private static Map<Long, Out<JsonNode>> activeSockets = new HashMap<Long, Out<JsonNode>>();
 	
 	
-	public static void connect(final long id, final String password,  In<JsonNode> in, Out<JsonNode> out){
-		
-				
-		/*boolean result = false;
-		HttpClient httpclient = new DefaultHttpClient();
-		try {
-
-			HttpPut put = new HttpPut(new URI("http://911backend-911backend.rhcloud.com/district/verify/"));
-			put.setHeader("Content-type", "application/json");
-			StringEntity params = new StringEntity("{\"id\":"+id+",\"password\":\""+password+"\"}");
-			put.setEntity(params);
-
-			HttpResponse response = httpclient.execute(put);
-
-			StatusLine statusLine = response.getStatusLine();
-			
-			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-				result = true;
-			}
-
-		} catch (ClientProtocolException e) {
-			result = false;
-			e.printStackTrace();
-		} catch (IOException e) {
-			result = false;
-			e.printStackTrace();
-		} catch (URISyntaxException e1) {
-			result = false;
-			e1.printStackTrace();
-		}*/
-		
+	public static void connect(final long id, final String password,  In<JsonNode> in, Out<JsonNode> out){		
 		
 		
 		boolean result = false;
@@ -72,7 +45,6 @@ public class WebSocketPool {
 			    }
 			});
 		} catch (Throwable e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -91,8 +63,30 @@ public class WebSocketPool {
 		
 	}
 	
-	public static void ban(long id, Out<JsonNode> out){
-		String url = "http://911backend-911backend.rhcloud.com/district/ban/" + id;
+	
+	public static void ban(final long id, Out<JsonNode> out){
+		
+		boolean result = false;
+		try {
+			result = JPA.withTransaction(new Function0<Boolean>(){
+			    public Boolean apply() throws Throwable{
+			        return DistrictOperations.banClient(id);
+			    }
+			});
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		
+		if(result){
+			ObjectNode on = Json.newObject();
+			on.put("message", "User banned successfuly");
+			out.write(on);
+		}else{
+			ObjectNode on = Json.newObject();
+			on.put("message", "User bann problem");
+			out.write(on);
+		}
+		/*String url = "http://911backend-911backend.rhcloud.com/district/ban/" + id;
 		HttpClient httpclient = new DefaultHttpClient();
 		try {
 			
@@ -119,11 +113,35 @@ public class WebSocketPool {
 			e.printStackTrace();
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
-		}
+		}*/
 	}
 	
-	public static void solve(long id, Out<JsonNode> out){
-		String url = "http://911backend-911backend.rhcloud.com/district/archive/" + id;
+	public static void solve(final long id, Out<JsonNode> out){
+		
+		boolean result = false;
+		try {
+			result = JPA.withTransaction(new Function0<Boolean>(){
+			    public Boolean apply() throws Throwable{
+			        return DistrictOperations.archiveCrime(id);
+			    }
+			});
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		
+		if(result){
+			ObjectNode on = Json.newObject();
+			on.put("message", "Crime successfuly archived");
+			out.write(on);
+		}else{
+			ObjectNode on = Json.newObject();
+			on.put("message", "Archivation problem");
+			out.write(on);
+		}
+		
+		
+		
+		/*String url = "http://911backend-911backend.rhcloud.com/district/archive/" + id;
 		HttpClient httpclient = new DefaultHttpClient();
 		try {
 			
@@ -150,7 +168,7 @@ public class WebSocketPool {
 			e.printStackTrace();
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
-		}
+		}*/
 	}
 	
 	

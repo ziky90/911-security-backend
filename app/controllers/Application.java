@@ -48,7 +48,7 @@ public class Application extends Controller {
 	}
 	
 	
-	@Transactional
+	/*@Transactional
 	public static Result banUser(long id){
 		Query query = JPA.em().createQuery("SELECT c FROM  Crime c WHERE c.id = :id");
 		Crime c = (Crime) query.setParameter("id", id).getSingleResult();
@@ -71,19 +71,8 @@ public class Application extends Controller {
 		}
 		
 		return ok("archived");
-	}
-	
-	/*@Transactional(readOnly=true)
-	@BodyParser.Of(BodyParser.Json.class)
-	public static Result verifyDistrict(){
-		JsonNode json = request().body().asJson();
-		
-		Long id = json.findPath("id").getLongValue();
-		if(DistrictOperations.isOwnerTransact(id, json.findPath("password").getTextValue())){
-			return ok("logged in");
-		}
-		
-		return badRequest("wrong password");
 	}*/
+	
+	
 	
 }
