@@ -6,11 +6,9 @@ import javax.persistence.Query;
 import model.Crime;
 import model.District;
 
-import org.codehaus.jackson.node.ObjectNode;
 import org.mindrot.jbcrypt.BCrypt;
 
 import play.db.jpa.JPA;
-import play.libs.Json;
 
 public class DistrictOperations {
 

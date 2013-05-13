@@ -1,25 +1,10 @@
 package websocket;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.Query;
-
-import model.Crime;
 import model.operations.DistrictOperations;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 
@@ -86,34 +71,6 @@ public class WebSocketPool {
 			on.put("message", "User bann problem");
 			out.write(on);
 		}
-		/*String url = "http://911backend-911backend.rhcloud.com/district/ban/" + id;
-		HttpClient httpclient = new DefaultHttpClient();
-		try {
-			
-
-			HttpGet method = new HttpGet(new URI(url));
-			HttpResponse response = httpclient.execute(method);
-			StatusLine statusLine = response.getStatusLine();
-
-			//Log.v(statusLine.toString(), "");
-			
-			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-				ObjectNode on = Json.newObject();
-				on.put("message", "User banned successfuly");
-				out.write(on);
-			} else if (statusLine.getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
-				ObjectNode on = Json.newObject();
-				on.put("message", "User bann problem");
-				out.write(on);
-			}
-
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
-		}*/
 	}
 	
 	public static void solve(final long id, Out<JsonNode> out){
@@ -138,37 +95,6 @@ public class WebSocketPool {
 			on.put("message", "Archivation problem");
 			out.write(on);
 		}
-		
-		
-		
-		/*String url = "http://911backend-911backend.rhcloud.com/district/archive/" + id;
-		HttpClient httpclient = new DefaultHttpClient();
-		try {
-			
-
-			HttpGet method = new HttpGet(new URI(url));
-			HttpResponse response = httpclient.execute(method);
-			StatusLine statusLine = response.getStatusLine();
-
-			//Log.v(statusLine.toString(), "");
-			
-			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-				ObjectNode on = Json.newObject();
-				on.put("message", "Crime successfuly archived");
-				out.write(on);
-			} else if (statusLine.getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
-				ObjectNode on = Json.newObject();
-				on.put("message", "Archivation problem");
-				out.write(on);
-			}
-
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
-		}*/
 	}
 	
 	
